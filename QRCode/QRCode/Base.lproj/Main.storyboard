@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QRCode" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POX-I2-GKS">
+                                <rect key="frame" x="20" y="545" width="120" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.96796342324918061" blue="0.66996351485891437" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="6qa-9Z-htg"/>
+                                    <constraint firstAttribute="height" constant="35" id="Fvv-gT-GK8"/>
+                                    <constraint firstAttribute="width" constant="120" id="Z4J-bK-kTo"/>
+                                    <constraint firstAttribute="width" constant="120" id="byO-It-1MJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6qa-9Z-htg"/>
+                                        <exclude reference="Z4J-bK-kTo"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu5-6N-woh">
+                                <rect key="frame" x="155" y="545" width="425" height="35"/>
+                                <color key="backgroundColor" red="0.81859534965153791" green="1" blue="0.98610718588441615" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="BFy-iO-TZc"/>
+                                    <constraint firstAttribute="height" constant="35" id="YJT-ME-Lxf"/>
+                                    <constraint firstAttribute="width" constant="345" id="c0G-4k-ri7"/>
+                                    <constraint firstAttribute="width" constant="425" id="eCP-M3-d7Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="YJT-ME-Lxf"/>
+                                        <exclude reference="c0G-4k-ri7"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="POX-I2-GKS" secondAttribute="bottom" constant="20" id="66x-W6-vx6"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="leading" secondItem="POX-I2-GKS" secondAttribute="trailing" constant="15" id="8Rb-fg-9oS"/>
+                            <constraint firstItem="POX-I2-GKS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gki-lW-KCP"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="leading" secondItem="POX-I2-GKS" secondAttribute="trailing" constant="15" id="O4h-s2-YqO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="POX-I2-GKS" secondAttribute="bottom" constant="20" id="RSf-N0-hnA"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="leading" secondItem="POX-I2-GKS" secondAttribute="trailing" constant="15" id="Taf-sw-hkT"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Uc4-gO-9lg"/>
+                            <constraint firstItem="POX-I2-GKS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YZn-6I-UUG"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="bqC-Xw-j8F"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qu5-6N-woh" secondAttribute="bottom" constant="20" id="elm-Fw-QsT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Qu5-6N-woh" secondAttribute="bottom" constant="20" id="gVL-Zh-bAN"/>
+                            <constraint firstItem="Qu5-6N-woh" firstAttribute="leading" secondItem="POX-I2-GKS" secondAttribute="trailing" constant="15" id="nkn-sv-FBN"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gki-lW-KCP"/>
+                                <exclude reference="8Rb-fg-9oS"/>
+                                <exclude reference="Uc4-gO-9lg"/>
+                                <exclude reference="nkn-sv-FBN"/>
+                                <exclude reference="RSf-N0-hnA"/>
+                                <exclude reference="elm-Fw-QsT"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="POX-I2-GKS" id="7ih-D8-ODK"/>
+                        <outlet property="result" destination="Qu5-6N-woh" id="gkO-Jb-7O8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="361"/>
+        </scene>
+    </scenes>
+</document>
