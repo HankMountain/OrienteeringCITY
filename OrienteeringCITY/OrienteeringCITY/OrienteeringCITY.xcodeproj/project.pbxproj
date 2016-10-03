@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		36A202641D9BA874001DD812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202631D9BA874001DD812 /* AppDelegate.swift */; };
-		36A202661D9BA874001DD812 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202651D9BA874001DD812 /* ViewController.swift */; };
+		36A202661D9BA874001DD812 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202651D9BA874001DD812 /* LogInViewController.swift */; };
 		36A202691D9BA874001DD812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36A202671D9BA874001DD812 /* Main.storyboard */; };
 		36A2026B1D9BA874001DD812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36A2026A1D9BA874001DD812 /* Assets.xcassets */; };
 		36A2026E1D9BA874001DD812 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36A2026C1D9BA874001DD812 /* LaunchScreen.storyboard */; };
 		36A202781D9BA8FB001DD812 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36A202771D9BA8FB001DD812 /* GoogleService-Info.plist */; };
 		36A2027A1D9BAC1B001DD812 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A202791D9BAC1B001DD812 /* FBSDKCoreKit.framework */; };
 		36A2027C1D9BAF45001DD812 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A2027B1D9BAF45001DD812 /* FBSDKLoginKit.framework */; };
+		36A2027E1D9C17C7001DD812 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2027D1D9C17C7001DD812 /* MainPageViewController.swift */; };
 		776DEA0D3B57691FAF2075A1 /* Pods_OrienteeringCITY.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D880065C8054C47A27F33CFB /* Pods_OrienteeringCITY.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		36A202601D9BA874001DD812 /* OrienteeringCITY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrienteeringCITY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36A202631D9BA874001DD812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36A202651D9BA874001DD812 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		36A202651D9BA874001DD812 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		36A202681D9BA874001DD812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36A2026A1D9BA874001DD812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36A2026D1D9BA874001DD812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,6 +30,7 @@
 		36A202771D9BA8FB001DD812 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36A202791D9BAC1B001DD812 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		36A2027B1D9BAF45001DD812 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		36A2027D1D9C17C7001DD812 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		4128EB0BA0A9CDF0895D1DD3 /* Pods-OrienteeringCITY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrienteeringCITY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrienteeringCITY/Pods-OrienteeringCITY.debug.xcconfig"; sourceTree = "<group>"; };
 		D880065C8054C47A27F33CFB /* Pods_OrienteeringCITY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrienteeringCITY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC76E8C9790D015BF15E270 /* Pods-OrienteeringCITY.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrienteeringCITY.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrienteeringCITY/Pods-OrienteeringCITY.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,7 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				36A202631D9BA874001DD812 /* AppDelegate.swift */,
-				36A202651D9BA874001DD812 /* ViewController.swift */,
+				36A202651D9BA874001DD812 /* LogInViewController.swift */,
+				36A2027D1D9C17C7001DD812 /* MainPageViewController.swift */,
 				36A202671D9BA874001DD812 /* Main.storyboard */,
 				36A2026A1D9BA874001DD812 /* Assets.xcassets */,
 				36A2026C1D9BA874001DD812 /* LaunchScreen.storyboard */,
@@ -222,7 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36A202661D9BA874001DD812 /* ViewController.swift in Sources */,
+				36A202661D9BA874001DD812 /* LogInViewController.swift in Sources */,
+				36A2027E1D9C17C7001DD812 /* MainPageViewController.swift in Sources */,
 				36A202641D9BA874001DD812 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

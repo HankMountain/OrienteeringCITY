@@ -52,50 +52,92 @@ class AddGeotificationViewController: UITableViewController {
 //    addButton.isEnabled = false
   }
 
-  @IBAction func textFieldEditingChanged(sender: UITextField) {
-    
-    /////
-    ///////Hank_modify_20160927
-    /////
+//  @IBAction func textFieldEditingChanged(sender: UITextField) {
+//    
+//    /////
+//    ///////Hank_modify_20160927
+//    /////
+//    
+//    addButton.enabled = !radiusTextField.text!.isEmpty && !noteTextField.text!.isEmpty
+//  }
+
+
+
+  
+  
+  @IBAction func textFieldEditingChanged(sender: AnyObject) {
     
     addButton.enabled = !radiusTextField.text!.isEmpty && !noteTextField.text!.isEmpty
+    
   }
 
-  @IBAction func onCancel(sender: AnyObject) {
+  
+  
     
-    /////
-    ///////Hank_modify_20160927
-    /////
     
-    dismissViewControllerAnimated(true, completion: nil)
+//  @IBAction func onCancel(sender: AnyObject) {
+//    
+//    /////
+//    ///////Hank_modify_20160927
+//    /////
+//    
+//    dismissViewControllerAnimated(true, completion: nil)
+//    
+////    dismiss(animated: true, completion: nil)
+//  }
     
-//    dismiss(animated: true, completion: nil)
-  }
+    
+    @IBAction func onCancel(sender: AnyObject) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
+    
 
-  @IBAction private func onAdd(sender: AnyObject) {
-    let coordinate = mapView.centerCoordinate
-    let radius = Double(radiusTextField.text!) ?? 0
+//  @IBAction private func onAdd(sender: AnyObject) {
+//    let coordinate = mapView.centerCoordinate
+//    let radius = Double(radiusTextField.text!) ?? 0
+//    
+//    /////
+//    ///////Hank_modify_20160927
+//    /////
+//    
+//    let identifier = NSUUID().UUIDString
+//    
+////    let identifier = NSUUID().uuidString
+//    let note = noteTextField.text
+//    
+//    /////
+//    ///////Hank_modify_20160927
+//    /////
+//    
+//    
+//    let eventType: EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit ; delegate?.addGeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)
+//    
+//    
+////    let eventType: EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
+////    delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)
+//  }
+  
+  
+  
     
-    /////
-    ///////Hank_modify_20160927
-    /////
+    @IBAction private func onAdd(sender: UIBarButtonItem) {
+      
+      print("Adding")
+      
+        let coordinate = mapView.centerCoordinate
+        let radius = Double(radiusTextField.text!) ?? 0
     
-    let identifier = NSUUID().UUIDString
+        let identifier = NSUUID().UUIDString
+        let note = noteTextField.text
+        
+        let eventType: EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit ; delegate?.addGeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)
+        
+    }
     
-//    let identifier = NSUUID().uuidString
-    let note = noteTextField.text
-    
-    /////
-    ///////Hank_modify_20160927
-    /////
-    
-    
-    let eventType: EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit ; delegate?.addGeotificationViewController(self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)
-    
-    
-//    let eventType: EventType = (eventTypeSegmentedControl.selectedSegmentIndex == 0) ? .onEntry : .onExit
-//    delegate?.addGeotificationViewController(controller: self, didAddCoordinate: coordinate, radius: radius, identifier: identifier, note: note!, eventType: eventType)
-  }
 
   @IBAction private func onZoomToCurrentLocation(sender: AnyObject) {
     mapView.zoomToUserLocation()

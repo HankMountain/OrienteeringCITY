@@ -54,7 +54,7 @@
                     <navigationItem key="navigationItem" title="Geotifications (0)" id="dS8-nZ-3oV">
                         <barButtonItem key="leftBarButtonItem" image="CurrentLocation" id="FIG-L9-xbZ">
                             <connections>
-                                <action selector="zoomToCurrentLocationWithSender:" destination="LYI-dq-R4y" id="e7K-H3-omj"/>
+                                <action selector="zoomToCurrentLocation:" destination="LYI-dq-R4y" id="hn1-Cs-ZLF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8yu-XQ-amA">
@@ -87,7 +87,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vcK-ZI-EcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="645" y="505"/>
+            <point key="canvasLocation" x="738" y="505"/>
         </scene>
         <!--Add Geotification-->
         <scene sceneID="fiQ-Gi-mFr">
@@ -159,7 +159,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="textFieldEditingChangedWithSender:" destination="WOc-Kh-RdY" eventType="editingChanged" id="YXW-xV-CpS"/>
+                                                        <action selector="textFieldEditingChanged:" destination="WOc-Kh-RdY" eventType="editingChanged" id="Gjj-bW-a9z"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Radius" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXL-jP-tGt">
@@ -189,7 +189,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
-                                                        <action selector="textFieldEditingChangedWithSender:" destination="WOc-Kh-RdY" eventType="editingChanged" id="TKA-QJ-9Sl"/>
+                                                        <action selector="textFieldEditingChanged:" destination="WOc-Kh-RdY" eventType="editingChanged" id="bKx-DP-BPA"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81s-ig-4vV">
@@ -219,18 +219,18 @@
                     <navigationItem key="navigationItem" title="Add Geotification" id="cjD-eh-hQf">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="xDC-Ux-qv5">
                             <connections>
-                                <action selector="onCancelWithSender:" destination="WOc-Kh-RdY" id="fR4-Ya-HVp"/>
+                                <action selector="onCancel:" destination="WOc-Kh-RdY" id="dvv-0z-FGo"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Add" id="Zqz-jV-nhQ">
                                 <connections>
-                                    <action selector="onAddWithSender:" destination="WOc-Kh-RdY" id="o75-ar-PF3"/>
+                                    <action selector="onAdd:" destination="WOc-Kh-RdY" id="i2I-RD-pJU"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="CurrentLocation" id="cLD-qt-jBr" userLabel="CurrentLocation">
                                 <connections>
-                                    <action selector="onZoomToCurrentLocationWithSender:" destination="WOc-Kh-RdY" id="vJ9-LT-9X0"/>
+                                    <action selector="onZoomToCurrentLocation:" destination="WOc-Kh-RdY" id="aM8-rG-2wm"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -246,7 +246,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fN-jg-cX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269" y="505"/>
+            <point key="canvasLocation" x="1385" y="505"/>
         </scene>
     </scenes>
     <resources>
