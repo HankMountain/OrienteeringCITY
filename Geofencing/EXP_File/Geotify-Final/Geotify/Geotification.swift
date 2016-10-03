@@ -25,6 +25,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
+//定義geo偵測點的資料型態
 struct GeoKey {
   static let latitude = "latitude"
   static let longitude = "longitude"
@@ -34,12 +35,16 @@ struct GeoKey {
   static let eventType = "eventTYpe"
 }
 
+//觸發event型態
 enum EventType: String {
   case onEntry = "On Entry"
   case onExit = "On Exit"
 }
 
-class Geotification: NSObject,MKAnnotation {
+
+
+
+class Geotification: NSObject,MKAnnotation, NSCoding{
   
   
   /////
@@ -49,11 +54,14 @@ class Geotification: NSObject,MKAnnotation {
 //暫時移除
 //   NSCoding,
   
+  
+  //定義參數
   var coordinate: CLLocationCoordinate2D
   var radius: CLLocationDistance
   var identifier: String
   var note: String
   var eventType: EventType
+  
   
   var title: String? {
     if note.isEmpty {
@@ -67,6 +75,8 @@ class Geotification: NSObject,MKAnnotation {
     return "Radius: \(radius)m - \(eventTypeString)"
   }
   
+  
+  
   init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String, eventType: EventType) {
     self.coordinate = coordinate
     self.radius = radius
@@ -74,6 +84,8 @@ class Geotification: NSObject,MKAnnotation {
     self.note = note
     self.eventType = eventType
   }
+  
+  
   
   // MARK: NSCoding
   required init?(coder decoder: NSCoder) {
@@ -93,7 +105,9 @@ class Geotification: NSObject,MKAnnotation {
     
 //    let latitude = decoder.decodeDouble(forKey: GeoKey.latitude)
 //    let longitude = decoder.decodeDouble(forKey: GeoKey.longitude)
+    
     coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    
 //    radius = decoder.decodeDouble(forKey: GeoKey.radius)
 //    identifier = decoder.decodeObject(forKey: GeoKey.identifier) as! String
 //    note = decoder.decodeObject(forKey: GeoKey.note) as! String
@@ -101,9 +115,12 @@ class Geotification: NSObject,MKAnnotation {
   }
   
   
+//  public func encodeWithCoder(coder: NSCoder)
+//  public init?(coder aDecoder: NSCoder)
   
   
-  func encode(with coder: NSCoder) {
+  // MARK: Encoding
+  func encodeWithCoder(coder: NSCoder) {
     
     /////
     ///////Hank_modify_20160927

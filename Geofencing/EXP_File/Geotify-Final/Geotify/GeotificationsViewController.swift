@@ -33,17 +33,22 @@ class GeotificationsViewController: UIViewController {
   @IBOutlet weak var mapView: MKMapView!
   
   var geotifications: [Geotification] = []
-  var locationManager = CLLocationManager()
+  var locationManager = CLLocationManager()//you need to set up a Location Manager instance and request the appropriate permissions.
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    super.viewDidLoad()
     // 1
+    //set the viewcontroller as the delegate of locationManager
     locationManager.delegate = self
     // 2
+    //要求always geofencing的權限
     locationManager.requestAlwaysAuthorization()
     // 3
+    //將剛才在addgeotification新增的點加到地圖上．
     loadAllGeotifications()
+    
+    mapView.showsUserLocation = true
+    
   }
   
   
@@ -65,9 +70,15 @@ class GeotificationsViewController: UIViewController {
     }
   }
   
+  
+  
+  
   // MARK: Loading and saving functions
   func loadAllGeotifications() {
     geotifications = []
+    
+    print("BREAK_POINT : loadAllGeotifications")
+
     
     /////
     ///////Hank_modify_20160927
@@ -75,6 +86,8 @@ class GeotificationsViewController: UIViewController {
     
     guard let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(PreferencesKeys.savedItems) else { return }
     for savedItem in savedItems {
+      
+      print("BREAK_POINT : loadAllGeotifications_forinloop")
       
       /////
       ///////Hank_modify_20160927
@@ -89,8 +102,14 @@ class GeotificationsViewController: UIViewController {
   
   
   func saveAllGeotifications() {
+    
+    print("BREAK_POINT : saveAllGeotifications")
+
+    
     var items: [NSData] = []
     for geotification in geotifications {
+      
+      print("BREAK_POINT : saveAllGeotifications_forinloop")
       
       /////
       ///////Hank_modify_20160927
@@ -140,6 +159,8 @@ class GeotificationsViewController: UIViewController {
     updateGeotificationsCount()
   }
   
+  
+  //限制新增monitor站點的數量為小於20
   func updateGeotificationsCount() {
     title = "Geotifications (\(geotifications.count))"
     navigationItem.rightBarButtonItem?.enabled = (geotifications.count < 20)
@@ -174,14 +195,23 @@ class GeotificationsViewController: UIViewController {
   }
   
   // MARK: Other mapview functions
-  @IBAction func zoomToCurrentLocation(sender: AnyObject) {
-    mapView.zoomToUserLocation()
-  }
+//  @IBAction func zoomToCurrentLocation(sender: AnyObject) {
+//    mapView.zoomToUserLocation()
+//  }
   
+  
+    @IBAction private func zoomToCurrentLocation(sender: AnyObject) {
+        mapView.zoomToUserLocation()
+      print("ZOOM")
+    }
+  
+  //畫出geofencing所需要的圓形區域
   func region(withGeotification geotification: Geotification) -> CLCircularRegion {
     // 1
+    //利用CLCircularRegion functnion定義出圓形區域，並且經由geotification model裡面的中心點座標，半徑，畫出來．同時帶有identifier．
     let region = CLCircularRegion(center: geotification.coordinate, radius: geotification.radius, identifier: geotification.identifier)
     // 2
+    //CLCircularRegion具有辨認物件進入範圍的func，
     region.notifyOnEntry = (geotification.eventType == .onEntry)
     region.notifyOnExit = !region.notifyOnEntry
     return region
@@ -266,6 +296,7 @@ extension GeotificationsViewController: AddGeotificationsViewControllerDelegate 
     
     controller.dismissViewControllerAnimated(true, completion: nil)
     
+    
 //    controller.dismiss(animated: true, completion: nil)
     // 1
     let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
@@ -287,7 +318,7 @@ extension GeotificationsViewController: CLLocationManagerDelegate {
     ///////Hank_modify_20160927
     /////
     
-    mapView.showsUserLocation = status == .AuthorizedAlways
+    mapView.showsUserLocation = (status == .AuthorizedAlways)
     
 //    mapView.showsUserLocation = status == .authorizedAlways
   }
@@ -342,8 +373,10 @@ extension GeotificationsViewController: MKMapViewDelegate {
   }
   
   
+  
   func mapView(mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
     if overlay is MKCircle {
+      
       let circleRenderer = MKCircleRenderer(overlay: overlay)
       circleRenderer.lineWidth = 1.0
       
@@ -365,18 +398,24 @@ extension GeotificationsViewController: MKMapViewDelegate {
     return MKOverlayRenderer(overlay: overlay)
   }
   
+  
+  
   func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     // Delete geotification
+    
     let geotification = view.annotation as! Geotification
     
     /////
     ///////Hank_modify_20160927
     /////
     
+    stopMonitoring(geotification)
+    
     remove(geotification)
     
 //    remove(geotification: geotification)
     saveAllGeotifications()
+    
   }
   
 }

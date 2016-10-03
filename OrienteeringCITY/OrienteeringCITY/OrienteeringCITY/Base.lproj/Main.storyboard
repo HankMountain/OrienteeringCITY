@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OrienteeringCITY" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="OrienteeringCITY" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +17,101 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notice for the user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OO6-du-EXM">
+                                <rect key="frame" x="208" y="108" width="184" height="92"/>
+                                <color key="backgroundColor" red="1" green="0.36222732512844735" blue="0.18641422728246226" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="8VH-Sc-Ice"/>
+                                    <constraint firstAttribute="width" constant="184" id="DTP-yj-0oJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gEz-VE-eRI">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <color key="color" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gEz-VE-eRI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3M6-Vf-PLG"/>
+                            <constraint firstItem="gEz-VE-eRI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H9t-HQ-NkB"/>
+                            <constraint firstItem="OO6-du-EXM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="88" id="Jht-Vx-nql"/>
+                            <constraint firstItem="OO6-du-EXM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Suz-cU-frP"/>
+                            <constraint firstItem="gEz-VE-eRI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yme-BQ-Lil"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OO6-du-EXM" secondAttribute="trailing" constant="188" id="bDB-rC-u7b"/>
+                            <constraint firstItem="OO6-du-EXM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="188" id="l8g-ax-FVY"/>
+                            <constraint firstItem="gEz-VE-eRI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="smq-jx-yQG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bDB-rC-u7b"/>
+                                <exclude reference="l8g-ax-FVY"/>
+                                <exclude reference="3M6-Vf-PLG"/>
+                                <exclude reference="smq-jx-yQG"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="logInPageInformationLabel" destination="OO6-du-EXM" id="6R5-vY-3yh"/>
+                        <outlet property="logInPageLoadingSpinner" destination="gEz-VE-eRI" id="S4k-WX-xWM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="288" y="280"/>
+        </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="M1U-EK-Sa3">
+            <objects>
+                <viewController storyboardIdentifier="MainPageViewController" id="obC-23-iHu" customClass="MainPageViewController" customModule="OrienteeringCITY" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ouz-du-cZB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5IL-HC-nXw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ccM-nP-f1D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MAIN PAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY8-Ni-PdV">
+                                <rect key="frame" x="20" y="28" width="560" height="21"/>
+                                <color key="backgroundColor" red="0.28642029797406426" green="0.83477176047120416" blue="0.17868064468534803" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="BIl-RQ-gNX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ei0-Ku-aBA">
+                                <rect key="frame" x="471" y="57" width="109" height="30"/>
+                                <color key="backgroundColor" red="0.9793643651832461" green="0.9332431558874198" blue="0.14104183366633122" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qfL-KS-EKo"/>
+                                    <constraint firstAttribute="width" constant="109" id="uNu-MS-r51"/>
+                                </constraints>
+                                <state key="normal" title="LOG OUT">
+                                    <color key="titleColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapLogout:" destination="obC-23-iHu" eventType="touchUpInside" id="KtX-D4-MsF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bY8-Ni-PdV" firstAttribute="top" secondItem="Ouz-du-cZB" secondAttribute="bottom" constant="8" id="GdV-qY-3dl"/>
+                            <constraint firstItem="ei0-Ku-aBA" firstAttribute="top" secondItem="bY8-Ni-PdV" secondAttribute="bottom" constant="8" id="RYK-vo-38u"/>
+                            <constraint firstItem="bY8-Ni-PdV" firstAttribute="centerX" secondItem="ccM-nP-f1D" secondAttribute="centerX" id="XR9-2b-dLa"/>
+                            <constraint firstItem="ei0-Ku-aBA" firstAttribute="trailing" secondItem="ccM-nP-f1D" secondAttribute="trailingMargin" id="uao-Bw-TT6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TAe-C3-tcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="280"/>
         </scene>
     </scenes>
 </document>

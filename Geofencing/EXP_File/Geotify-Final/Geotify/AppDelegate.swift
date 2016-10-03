@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   let locationManager = CLLocationManager()
   
 //  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions:[NSObject : AnyObject]? = nil) -> Bool {
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]? = nil) -> Bool {
     
     locationManager.delegate = self
     locationManager.requestAlwaysAuthorization()
@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIApplication.sharedApplication().cancelAllLocalNotifications()
     return true
   }
+  
   
   func handleEvent(forRegion region: CLRegion!) {
     // Show an alert if application is active
@@ -68,6 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
   }
   
+  
+  
   func note(fromRegionIdentifier identifier: String) -> String? {
     
     /////
@@ -90,8 +93,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return index != nil ? geotifications?[index!]?.note : nil
   }
   
+  
 }
 
+
+//Handle region event
+//下列程式碼處理進入或是離開所定義範圍是否要觸發event，call the func handleEvent(forRegion region: CLRegion!) 
+//to tackle the 之後得處理．
 extension AppDelegate: CLLocationManagerDelegate {
   
   func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
