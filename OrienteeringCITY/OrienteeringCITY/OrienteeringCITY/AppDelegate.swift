@@ -9,18 +9,24 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         return true
     }
@@ -30,6 +36,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
+    
+    
+    //Handle region event
+    func handleEvent(forRegion region: CLRegion!){
+        // Show an alert if application is active
+        if UIApplication.sharedApplication().applicationState == .Active {
+            guard let message = note(fromRegionIdentifier: region.identifier) else{return}
+            window?.rootViewController?.showAlert(withTitle: nil, message: message)
+        } else {
+            let notification = UILocalNotification()
+            notification.alertBody = note(fromRegionIdentifier: region.identifier)
+            notification.soundName = "Default"
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        }
+    }
+    
+    
+    
+    func note(fromRegionIdentifier identifier: String) -> String?{
+        
+        let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(PreferencesKeys.savedItems) as? [NSData]
+        let geotifications = savedItems?.map{NSKeyedUnarchiver.unarchiveObjectWithData($0 as NSData) as? Geotification}
+        let index = geotifications?.indexOf{ $0?.identifier == identifier }
+        return index != nil ? geotifications?[index!]?.note : nil
+    }
+    
+    
+    
+    
+    
     
 
     func applicationWillResignActive(application: UIApplication) {
@@ -57,4 +93,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+
+
+
+
+//下列程式碼處理進入或是離開所定義範圍是否要觸發event，call the func handleEvent(forRegion region: CLRegion!)
+//to tackle the 之後得處理．
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
+}
+
+
 

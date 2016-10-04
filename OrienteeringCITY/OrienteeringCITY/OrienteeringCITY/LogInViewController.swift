@@ -30,12 +30,12 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         self.logInPageInformationLabel.hidden = true
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
-            if let user = user {
+            if user != nil {
                 // User is signed in.
                 //move the user to the home screen
                 
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainPageViewController : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainPageViewController")
+                let mainPageViewController : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainNavigationController")
                 self.presentViewController(mainPageViewController, animated: true, completion: nil )
                 
                 
@@ -66,7 +66,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
-        print("log in")
+        print("BREAK_POINT : Log In to Facebook")
         
         logInPageLoadingSpinner.startAnimating()
         
@@ -91,7 +91,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         
         FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
-            print("log in to firebase")
+            print("BREAK_POINT : Log In to Firebase")
         })
         
    
@@ -100,7 +100,7 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("log out")
+        print("BREAK_POINT : Log Out Facebook")
     }
 
 
