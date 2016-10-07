@@ -28,25 +28,31 @@ class InProcess_1_ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //1
+        // 1
         //set the viewcontroller as the delegate of locationManager
         locationManager.delegate = self
         // 2
         //要求always geofencing的權限
         locationManager.requestAlwaysAuthorization()
         // 3
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        // 4
         //將剛才在addgeotification新增的點加到地圖上．
         loadAllGeotifications()
         
         //目前先利用delegate的方式呼叫onAdd，把偵測點參數傳過來，之後必須要修正．
-        let instance = TodayEventViewController()
+        let instance = TodayEventViewController.defaultTodayEventViewController
         instance.delegate = self
         instance.onAdd()
+//        let instance = Locations.defaultLocations
+//        instance.delegate = self
+//        instance.locations()
         
         //測試用，目前似乎只有先加mapView1.showsUserLocation = true 才能Zoom IN
         mapView1.showsUserLocation = true
         locationManager.startUpdatingLocation() //這行沒加也沒差?
-
+        mapView1.userTrackingMode = MKUserTrackingMode.Follow
+        
     }
 
     
@@ -109,6 +115,7 @@ class InProcess_1_ViewController: UIViewController {
     }
     
     
+    // MARK: Remove Geofence Point
     func remove(geotification: Geotification) {
         
         print("BREAK_POINT : remove")
@@ -204,6 +211,8 @@ class InProcess_1_ViewController: UIViewController {
         return region
     }
     
+    
+    
     func startMonitoring(geotification: Geotification) {
         
         print("BREAK_POINT : startMonitoring")
@@ -220,6 +229,8 @@ class InProcess_1_ViewController: UIViewController {
         let region = self.region(withGeotification: geotification)
         locationManager.startMonitoringForRegion(region)
     }
+    
+    
     
     func stopMonitoring(geotification: Geotification) {
         
@@ -321,6 +332,7 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
     
     
     // MARK: Map overlay Renderer //舊的code
+    
 //    func mapView(mapView: MKMapView!, rendererFor overlay: MKOverlay!) -> MKOverlayRenderer! {
 //        
 //        if overlay is MKCircle {
@@ -339,13 +351,14 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
     
     
     // MARK: Map overlay Renderer //新的code
+    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
 //        if overlay is MKCircle {
             if let overlay = overlay as? MKCircle{
                 
             let circle = MKCircleRenderer(overlay: overlay)
             circle.strokeColor = UIColor.purpleColor()
-            circle.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.2)
+            circle.fillColor = UIColor.yellowColor().colorWithAlphaComponent(0.2)
             circle.lineWidth = 1
             return circle
         }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 import FBSDKLoginKit
 import CoreLocation
 
@@ -16,10 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let locationManager = CLLocationManager()
-
+    
+//    lazy var ref: FIRDatabaseReference =  { FIRDatabase.database().reference() }()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         FIRApp.configure()
+        
+//        FIRConfiguration.sharedInstance().logLevel = .Debug
+//        ref.child("events").observeEventType(.Value) { (snapshot) in
+//            print(snapshot)
+//        }
+        
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         locationManager.delegate = self
@@ -44,11 +53,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UIApplication.sharedApplication().applicationState == .Active {
             guard let message = note(fromRegionIdentifier: region.identifier) else{return}
             window?.rootViewController?.showAlert(withTitle: nil, message: message)
+            
+            print("***進入偵測範圍區域***")
+            print("BREAK_POINT : handleEvent_\(message)")
+            print("***進入偵測範圍區域***")
+            
         } else {
+            
             let notification = UILocalNotification()
             notification.alertBody = note(fromRegionIdentifier: region.identifier)
             notification.soundName = "Default"
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+            
+            print("BREAK_POINT : handleEvent_else_\(notification)")
+
         }
     }
     

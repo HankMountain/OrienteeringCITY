@@ -23,7 +23,7 @@
 //
 //}
 
-
+import UIKit
 import Foundation
 import MapKit
 
@@ -37,10 +37,19 @@ class MapViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //顯示單一Location的寫法
         // We use a predefined location
-        let location = CLLocation(latitude: 25.0424777 as CLLocationDegrees, longitude: 121.5648794 as CLLocationDegrees)
+//        let location = CLLocation(latitude: 25.0424777, longitude: 121.5648794)
+//        
+//        addRadiusCircle(location)
         
-        addRadiusCircle(location)
+        
+        //顯示複數Location的寫法
+        for location in Locatoins.locations {
+            addRadiusCircle(location)
+        }
+        
+        
     }
 }
 
@@ -50,7 +59,7 @@ extension MapViewController : MKMapViewDelegate, CLLocationManagerDelegate{
     
     func addRadiusCircle(location: CLLocation){
         self.mapView.delegate = self
-        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 10000 as CLLocationDistance)
+        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 500 as CLLocationDistance)
         self.mapView.addOverlay(circle)
     }
     
@@ -69,4 +78,39 @@ extension MapViewController : MKMapViewDelegate, CLLocationManagerDelegate{
  
 }
 
+
+
+
+//新增一個Class專門放Locations
+class Locatoins {
+    
+    static let locations : [CLLocation] = [
+        
+        CLLocation(latitude: 25.041, longitude: 121.5645),
+        CLLocation(latitude: 25.042, longitude: 121.5641),
+        CLLocation(latitude: 25.043, longitude: 121.5642),
+        CLLocation(latitude: 25.044, longitude: 121.5643),
+        CLLocation(latitude: 25.045, longitude: 121.5644),
+        
+        CLLocation(latitude: 25.046, longitude: 121.5645),
+        CLLocation(latitude: 25.047, longitude: 121.5641),
+        CLLocation(latitude: 25.048, longitude: 121.5642),
+        CLLocation(latitude: 25.049, longitude: 121.5643),
+        CLLocation(latitude: 25.050, longitude: 121.5644),
+        
+        CLLocation(latitude: 25.051, longitude: 121.5645),
+        CLLocation(latitude: 25.052, longitude: 121.5641),
+        CLLocation(latitude: 25.053, longitude: 121.5642),
+        CLLocation(latitude: 25.054, longitude: 121.5643),
+        CLLocation(latitude: 25.055, longitude: 121.5644),
+        
+        CLLocation(latitude: 25.056, longitude: 121.5645),
+        CLLocation(latitude: 25.057, longitude: 121.5641),
+        CLLocation(latitude: 25.058, longitude: 121.5642),
+        CLLocation(latitude: 25.059, longitude: 121.5643),
+        CLLocation(latitude: 25.060, longitude: 121.5644)
+        
+    ]
+    
+}
 

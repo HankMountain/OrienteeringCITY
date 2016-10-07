@@ -1,15 +1,23 @@
 <?xml version="1.0"?>
 <gpx version="1.1" creator="Xcode">
   <wpt lat="25.0487446" lon="121.5687969">
+      <time>2010-01-01T00:00:00Z</time>
     <name>City Suites Taipei Nandong</name>
   </wpt>
   <wpt lat="25.0298535" lon="121.5587943">
+      <time>2010-01-01T00:00:3Z</time>
     <name>ZenKan Hosppital</name>
   </wpt>
   <wpt lat="25.0424777" lon="121.5648794">
+      <time>2010-01-01T00:00:6Z</time>
       <name>YangChung MRT Station</name>
   </wpt>
   <wpt lat="25.0423611" lon="121.5603733">
+      <time>2010-01-01T00:00:9Z</time>
+      <name>Dunhua MRT Station</name>
+  </wpt>
+  <wpt lat="25.0423611" lon="121.5603733">
+      <time>2010-01-01T00:00:12Z</time>
       <name>Dunhua MRT Station</name>
   </wpt>
 </gpx>
