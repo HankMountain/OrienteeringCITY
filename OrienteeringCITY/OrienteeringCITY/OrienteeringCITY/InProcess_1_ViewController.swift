@@ -28,6 +28,13 @@ class InProcess_1_ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        mapView1.delegate = self
+        mapView1.mapType = MKMapType(rawValue: 0)!
+        
+        //追蹤使用者移動，將畫面中心定為使用者中位置．
+        mapView1.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+
         // 1
         //set the viewcontroller as the delegate of locationManager
         locationManager.delegate = self
@@ -35,25 +42,29 @@ class InProcess_1_ViewController: UIViewController {
         //要求always geofencing的權限
         locationManager.requestAlwaysAuthorization()
         // 3
+        //設定地圖最好精準度
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         // 4
         //將剛才在addgeotification新增的點加到地圖上．
         loadAllGeotifications()
         
+        
         //目前先利用delegate的方式呼叫onAdd，把偵測點參數傳過來，之後必須要修正．
         let instance = TodayEventViewController.defaultTodayEventViewController
         instance.delegate = self
+        
         instance.onAdd()
-//        let instance = Locations.defaultLocations
-//        instance.delegate = self
-//        instance.locations()
+        
+        
+        
+        
         
         //測試用，目前似乎只有先加mapView1.showsUserLocation = true 才能Zoom IN
         mapView1.showsUserLocation = true
         locationManager.startUpdatingLocation() //這行沒加也沒差?
-        mapView1.userTrackingMode = MKUserTrackingMode.Follow
-        
+
     }
+    
 
     
     // MARK: Loading and saving functions
@@ -254,6 +265,12 @@ class InProcess_1_ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        //因為ＧＰＳ功能很耗電,所以被敬執行時關閉定位功能
+        locationManager.stopUpdatingLocation()
+    }
 
 }
 
@@ -298,6 +315,22 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Location Manager failed with the following error: \(error)")
     }
+    
+    
+    
+    //加入畫使用者路徑的func
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation){
+        
+        if let oldLocationNew = oldLocation as CLLocation?{
+            let oldCoordinates = oldLocationNew.coordinate
+            let newCoordinates = newLocation.coordinate
+            var area = [oldCoordinates, newCoordinates]
+            var polyline = MKPolyline(coordinates: &area, count: area.count)
+            mapView1.addOverlay(polyline)
+            
+        }
+    }
+    
     
 }
 
@@ -362,15 +395,29 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
             circle.lineWidth = 1
             return circle
         }
+        
+        
+        if (overlay is MKPolyline) {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.brownColor().colorWithAlphaComponent(0.3)
+            polylineRenderer.lineWidth = 3
+            return polylineRenderer
+        }
+        
+        
+        
         return MKOverlayPathRenderer(overlay: overlay)
         
 //        else {
 //            return nil
 //        }
         
+
     }
     
     
+    
+
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // Delete geotification

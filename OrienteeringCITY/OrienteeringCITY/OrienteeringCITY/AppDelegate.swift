@@ -49,10 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //Handle region event
     func handleEvent(forRegion region: CLRegion!){
-        // Show an alert if application is active
+        
+        //Show an alert if application is active
+        //當手機畫面在App裡面時(開啟程式時)，
         if UIApplication.sharedApplication().applicationState == .Active {
             guard let message = note(fromRegionIdentifier: region.identifier) else{return}
             window?.rootViewController?.showAlert(withTitle: nil, message: message)
+            
             
             print("***進入偵測範圍區域***")
             print("BREAK_POINT : handleEvent_\(message)")
@@ -60,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             
+            //當App在背景執行時，會用此方式show提示
             let notification = UILocalNotification()
             notification.alertBody = note(fromRegionIdentifier: region.identifier)
             notification.soundName = "Default"
@@ -117,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 //下列程式碼處理進入或是離開所定義範圍是否要觸發event，call the func handleEvent(forRegion region: CLRegion!)
-//to tackle the 之後得處理．
+//to tackle 之後得處理．
 extension AppDelegate: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
