@@ -59,32 +59,11 @@ class TodayEventViewController: UIViewController {
         
         //利用此func來抓Error
         //FIRDatabase.setLoggingEnabled(true)
-        
-        
-        
-        
-//        firebaseRef.child("location").child("latitude").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
-//            
-//            self.lat.text = snapshot.value?.description
-//            self.latitude = String(snapshot.value!.description!)
-//            
-//            TodayEventViewController.defaultTodayEventViewController.latitude = self.latitude
-//        }
-//        
-//        firebaseRef.child("location").child("longitude").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
-//            self.lng.text = snapshot.value?.description
-//            self.longitude = String(snapshot.value!.description!)
-//            
-//            TodayEventViewController.defaultTodayEventViewController.longitude = self.longitude
-//        }
-        
-        
-        
+
         firebaseRef.child("locations").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
             
             let locationModelInTodayEventViewController = LocationModel()
             locationModelInTodayEventViewController.jsonConvert(snapshot)
-            
             
             TodayEventViewController.defaultTodayEventViewController.latitude = locationModelInTodayEventViewController.latitude
             TodayEventViewController.defaultTodayEventViewController.longitude = locationModelInTodayEventViewController.longitude
@@ -95,10 +74,17 @@ class TodayEventViewController: UIViewController {
 
     
     
+    //定義單次抓取站點Array的index，起始點跟結束點．
+    internal var indexIncrementStart : Int = 0
+    internal var indexIncrementEnd : Int = 1
     
     func onAdd(){
-     
-            for index in 0..<TodayEventViewController.defaultTodayEventViewController.latitude.count{
+
+        for index in indexIncrementStart..<indexIncrementEnd{
+            
+            print("BREAK_POINT : 此次新增站點為LocationArray第\(indexIncrementStart+1)點")
+
+//            for index in 0..<TodayEventViewController.defaultTodayEventViewController.latitude.count{
                 let lat = TodayEventViewController.defaultTodayEventViewController.latitude[index]
                 let lon = TodayEventViewController.defaultTodayEventViewController.longitude[index]
                 let radius = TodayEventViewController.defaultTodayEventViewController.radius[index]
@@ -107,23 +93,39 @@ class TodayEventViewController: UIViewController {
                 let coordinate =  CLLocationCoordinate2D(latitude: Double(lat)!, longitude: Double(lon)!)
                 
                 let identifier = NSUUID().UUIDString
-                
-                
+            
                 let eventType: EventType = .onEntry ; delegate?.addGeotificationViewController(self, didAddCoordinate: coordinate, radius: Double(radius)!, identifier: identifier, note: note, eventType: eventType)
-                
-                
             }
-
+        indexIncrementStart += 1
+        indexIncrementEnd += 1
     }
-
 }
 
+
+
+
+
+
     
     
-    
-    
-    
-    
+//        firebaseRef.child("location").child("latitude").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//
+//            self.lat.text = snapshot.value?.description
+//            self.latitude = String(snapshot.value!.description!)
+//
+//            TodayEventViewController.defaultTodayEventViewController.latitude = self.latitude
+//        }
+//
+//        firebaseRef.child("location").child("longitude").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//            self.lng.text = snapshot.value?.description
+//            self.longitude = String(snapshot.value!.description!)
+//
+//            TodayEventViewController.defaultTodayEventViewController.longitude = self.longitude
+//        }
+
+
+
+
     
     //把資料丟給InProcess_1_ViewController的地方
 //    func onAdd(){

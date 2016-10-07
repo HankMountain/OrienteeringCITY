@@ -92,27 +92,27 @@ class Geotification: NSObject, MKAnnotation,NSCoding {
     required init?(coder decoder: NSCoder){
         
         let latitude = decoder.decodeDoubleForKey(GeoKey.latitude)
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_latitude\(latitude)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_latitude\(latitude)")
 
         let longitude = decoder.decodeDoubleForKey(GeoKey.longitude)
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_longitude\(longitude)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_longitude\(longitude)")
         
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_coordinate\(coordinate)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_coordinate\(coordinate)")
         
         radius = decoder.decodeDoubleForKey(GeoKey.radius)
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_radius\(radius)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_radius\(radius)")
         
         identifier = decoder.decodeObjectForKey(GeoKey.identifier) as! String
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_identifier\(identifier)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_identifier\(identifier)")
         
         note = decoder.decodeObjectForKey(GeoKey.note) as! String
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_note\(note)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_note\(note)")
         
         
         eventType = EventType(rawValue: decoder.decodeObjectForKey(GeoKey.eventType) as! String)!
 //        eventType = decoder.decodeObjectForKey(GeoKey.eventType) as! EventType
-        print("BREAK_POINT : required init?(coder decoder: NSCoder)_eventType\(eventType)")
+//        print("BREAK_POINT : required init?(coder decoder: NSCoder)_eventType\(eventType)")
 
     }
     
@@ -128,12 +128,12 @@ class Geotification: NSObject, MKAnnotation,NSCoding {
         coder.encodeObject(eventType.rawValue, forKey: GeoKey.eventType)
         
         
-        print("BREAK_POINT : encodeWithCoder_latitude\(coordinate.latitude) with key \(GeoKey.latitude)")
-        print("BREAK_POINT : encodeWithCoder_longitude\(coordinate.longitude) with key \(GeoKey.longitude)")
-        print("BREAK_POINT : encodeWithCoder_radius\(radius) with key \(GeoKey.radius)")
+//        print("BREAK_POINT : encodeWithCoder_latitude\(coordinate.latitude) with key \(GeoKey.latitude)")
+//        print("BREAK_POINT : encodeWithCoder_longitude\(coordinate.longitude) with key \(GeoKey.longitude)")
+//        print("BREAK_POINT : encodeWithCoder_radius\(radius) with key \(GeoKey.radius)")
         print("BREAK_POINT : encodeWithCoder_identifier\(identifier) with key \( GeoKey.identifier)")
         print("BREAK_POINT : encodeWithCoder_note\(note) with key \(GeoKey.note)")
-        print("BREAK_POINT : encodeWithCoder_rawValue\(eventType.rawValue) with key \(GeoKey.eventType)")
+//        print("BREAK_POINT : encodeWithCoder_rawValue\(eventType.rawValue) with key \(GeoKey.eventType)")
     }
     
     
