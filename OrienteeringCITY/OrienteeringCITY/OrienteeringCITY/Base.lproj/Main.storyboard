@@ -133,13 +133,41 @@
                                     <segue destination="TqZ-3Z-0hs" kind="show" identifier="showInProcess_1" id="7Kx-xK-x52"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lng" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmH-Rw-hUc">
+                                <rect key="frame" x="357" y="529" width="223" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="223" id="3XI-Cd-gYx"/>
+                                    <constraint firstAttribute="height" constant="51" id="p3R-eZ-KCT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCi-Ut-WBp">
+                                <rect key="frame" x="20" y="529" width="223" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="IT8-YU-mNL"/>
+                                    <constraint firstAttribute="width" constant="223" id="ZYT-av-asF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ccw-lj-9IK" firstAttribute="top" secondItem="cCi-Ut-WBp" secondAttribute="bottom" constant="20" id="GD5-1e-Uyv"/>
                             <constraint firstItem="uHS-mL-Mvs" firstAttribute="centerY" secondItem="eXb-uZ-EBz" secondAttribute="centerY" id="Yz8-y5-IVB"/>
+                            <constraint firstItem="cCi-Ut-WBp" firstAttribute="leading" secondItem="eXb-uZ-EBz" secondAttribute="leadingMargin" id="cFj-3U-OFf"/>
                             <constraint firstItem="uHS-mL-Mvs" firstAttribute="centerX" secondItem="eXb-uZ-EBz" secondAttribute="centerX" id="cbL-ch-aZh"/>
+                            <constraint firstItem="ccw-lj-9IK" firstAttribute="top" secondItem="dmH-Rw-hUc" secondAttribute="bottom" constant="20" id="img-wg-01M"/>
+                            <constraint firstItem="dmH-Rw-hUc" firstAttribute="trailing" secondItem="eXb-uZ-EBz" secondAttribute="trailingMargin" id="kPr-VS-F6b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lat" destination="cCi-Ut-WBp" id="0Fs-UI-b4T"/>
+                        <outlet property="lng" destination="dmH-Rw-hUc" id="uXK-Zh-Qma"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VxA-9T-PFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TAe-C3-tcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2578" y="280"/>
+            <point key="canvasLocation" x="2522" y="280"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZDi-bf-EXt">
