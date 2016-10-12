@@ -18,11 +18,15 @@ class InProcess_1_ViewController: UIViewController {
 
     
     @IBOutlet weak var mapView1: MKMapView!
-    
+    @IBOutlet weak var traveledDistanceNumber: UILabel!
     
     
     var geotifications : [Geotification] = []
     var locationManager = CLLocationManager()
+    
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
+    var traveledDistance: Double = 0
 
     
     override func viewDidLoad() {
@@ -50,18 +54,20 @@ class InProcess_1_ViewController: UIViewController {
         
         
         //目前先利用delegate的方式呼叫onAdd，把偵測點參數傳過來，之後必須要修正．
+        //目前回到前一頁，再回到
+        
+        
         let instance = TodayEventViewController.defaultTodayEventViewController
         instance.delegate = self
-        
         instance.onAdd()
-        
-        
         
         
         
         //測試用，目前似乎只有先加mapView1.showsUserLocation = true 才能Zoom IN
         mapView1.showsUserLocation = true
         locationManager.startUpdatingLocation() //這行沒加也沒差?
+        
+        
 
     }
     
@@ -268,7 +274,7 @@ class InProcess_1_ViewController: UIViewController {
     
     
     override func viewDidDisappear(animated: Bool) {
-        //因為ＧＰＳ功能很耗電,所以被敬執行時關閉定位功能
+        //因為ＧＰＳ功能很耗電,所以背景執行時關閉定位功能
         locationManager.stopUpdatingLocation()
     }
 
@@ -285,6 +291,7 @@ extension InProcess_1_ViewController: AddGeotificationsViewControllerDelegate {
 
         let clampedRadius = min(radius, locationManager.maximumRegionMonitoringDistance)
         let geotification = Geotification(coordinate: coordinate, radius: clampedRadius, identifier: identifier, note: note, eventType: eventType)
+        
         add(geotification)
         startMonitoring(geotification)
         saveAllGeotifications()
@@ -327,8 +334,52 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
             var area = [oldCoordinates, newCoordinates]
             var polyline = MKPolyline(coordinates: &area, count: area.count)
             mapView1.addOverlay(polyline)
-            
         }
+
+    }
+    
+    
+    
+    //加入計算行走距離的function
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+//        print("1")
+//        print("\(startLocation)")
+//        print("\(lastLocation)")
+        
+        if startLocation == nil {
+            startLocation = locations.first
+            
+//            print("4")
+//            print("\(startLocation)")
+//            print("\(lastLocation)")
+            
+        } else {
+            if let lastLocationNew = locations.last {
+                
+//                print("2")
+//                print("\(startLocation)")
+//                print("\(lastLocation)")
+                
+                let distance = startLocation.distanceFromLocation(lastLocation)
+                let lastDistance = lastLocation.distanceFromLocation(lastLocationNew)
+                traveledDistance += lastDistance
+                traveledDistanceNumber.text = String(format: "%.2f",traveledDistance/1000) ?? "0.00"
+                
+//                print( "\(startLocation)") //目前看起來startLocation可以抓到固定值沒問題
+//                print( "\(lastLocation)") //目前看起來lastLocation可以抓到變化值沒問題
+//                print("FULL DISTANCE: \(traveledDistance/1000) Km")
+//                print("STRAIGHT DISTANCE: \(distance/1000) Km")
+//                print(lastDistance)
+            }
+        }
+        
+//        print("3")
+        
+        lastLocation = locations.last
+        
+//        print("\(startLocation)")
+//        print("\(lastLocation)")
     }
     
     
@@ -404,8 +455,7 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
             return polylineRenderer
         }
         
-        
-        
+
         return MKOverlayPathRenderer(overlay: overlay)
         
 //        else {

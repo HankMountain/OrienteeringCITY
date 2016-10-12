@@ -1,23 +1,55 @@
 <?xml version="1.0"?>
 <gpx version="1.1" creator="Xcode">
-  <wpt lat="25.0487446" lon="121.5687969">
-      <time>2010-01-01T00:00:00Z</time>
-    <name>City Suites Taipei Nandong</name>
+    <wpt lat="25.0529046" lon="121.5203406">
+        <time>2010-01-01T00:00:00Z</time>
+        <name>Start Point</name>
+    </wpt>
+  <wpt lat="25.0490258" lon="121.5099912">
+      <time>2010-01-01T00:00:08Z</time>
+    <name>Taipei Fucheng Bei Men</name>
   </wpt>
-  <wpt lat="25.0298535" lon="121.5587943">
-      <time>2010-01-01T00:00:3Z</time>
-    <name>ZenKan Hosppital</name>
-  </wpt>
-  <wpt lat="25.0424777" lon="121.5648794">
-      <time>2010-01-01T00:00:6Z</time>
-      <name>YangChung MRT Station</name>
-  </wpt>
-  <wpt lat="25.0423611" lon="121.5603733">
-      <time>2010-01-01T00:00:9Z</time>
-      <name>Dunhua MRT Station</name>
-  </wpt>
-  <wpt lat="25.0423611" lon="121.5603733">
+  <wpt lat="25.0477505" lon="121.5170599">
       <time>2010-01-01T00:00:12Z</time>
-      <name>Dunhua MRT Station</name>
+    <name>Taipei Train Station</name>
+  </wpt>
+  <wpt lat="25.0441055" lon="121.524231">
+      <time>2010-01-01T00:00:16Z</time>
+      <name>Shan Daou MRT Station</name>
+  </wpt>
+  <wpt lat="25.0424433" lon="121.5332498">
+      <time>2010-01-01T00:00:20Z</time>
+      <name>Chong Hsiao Shing Shen MRT Station</name>
+  </wpt>
+  <wpt lat="25.041629" lon="121.543767">
+      <time>2010-01-01T00:00:24Z</time>
+      <name>Chong Hsiao Fu Shing MRT Station</name>
+  </wpt>
+  <wpt lat="25.0416218" lon="121.5516552">
+      <time>2010-01-01T00:00:28Z</time>
+      <name>Chong Hsiao Dun Hua MRT Station</name>
+  </wpt>
+  <wpt lat="25.039012" lon="121.557739">
+      <time>2010-01-01T00:00:32Z</time>
+      <name>Chiang Kai Hsiae Memorial Hall</name>
+  </wpt>
+  <wpt lat="25.041146" lon="121.565963">
+      <time>2010-01-01T00:00:36Z</time>
+      <name>Taipei City Hall MRT Station</name>
+  </wpt>
+  <wpt lat="25.0407066" lon="121.5765839">
+      <time>2010-01-01T00:00:40Z</time>
+      <name>Yun Chung MRT Station</name>
+  </wpt>
+  <wpt lat="25.045054" lon="121.582522">
+      <time>2010-01-01T00:00:44Z</time>
+      <name>Ho Shan Pi MRT Station</name>
+  </wpt>
+  <wpt lat="25.060848" lon="121.544226">
+      <time>2010-01-01T00:00:54Z</time>
+      <name>Pivot MRT Station</name>
+  </wpt>
+  <wpt lat="25.0529046" lon="121.5203406">
+      <time>2010-01-01T00:01:04Z</time>
+      <name>Start Point</name>
   </wpt>
 </gpx>

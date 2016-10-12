@@ -47,11 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    //用stopNumberCount來限制呼叫handleEvent次數不出過Array參數個數
+    var stopNumberCount : Int = 1
+    
     //Handle region event
     func handleEvent(forRegion region: CLRegion!){
         
+        if stopNumberCount < TodayEventViewController.defaultTodayEventViewController.latitude.count {
+        
         //Show an alert if application is active
-        //當手機畫面在App裡面時(開啟程式時)，
+        //當手機畫面在App裡面時(開啟程式時)，會有pup up
         if UIApplication.sharedApplication().applicationState == .Active {
             guard let message = note(fromRegionIdentifier: region.identifier) else{return}
             window?.rootViewController?.showAlert(withTitle: nil, message: message)
@@ -61,9 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("BREAK_POINT : handleEvent_\(message)")
             print("***進入偵測範圍區域***")
             
+            let instance2 = TodayEventViewController.defaultTodayEventViewController
+            instance2.onAdd()
+
+            
         } else {
             
-            //當App在背景執行時，會用此方式show提示
+            //當App在背景執行時，會用此方式show提示，類似推播
             let notification = UILocalNotification()
             notification.alertBody = note(fromRegionIdentifier: region.identifier)
             notification.soundName = "Default"
@@ -72,6 +81,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("BREAK_POINT : handleEvent_else_\(notification)")
 
         }
+        
+        } else {
+            
+            //這邊可以做遊戲結束處理的功能
+            print("恭喜，你已經抵達終點！！！ In Apple deldgate ")
+            
+        }
+        
+        stopNumberCount += 1
+        
     }
     
     
