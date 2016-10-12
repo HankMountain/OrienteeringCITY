@@ -23,8 +23,8 @@ class TodayEventViewController: UIViewController {
     
     static let defaultTodayEventViewController = TodayEventViewController()
     
-    @IBOutlet weak var lat: UILabel!
-    @IBOutlet weak var lng: UILabel!
+//    @IBOutlet weak var lat: UILabel!
+//    @IBOutlet weak var lng: UILabel!
     
     internal var latitude : [String] = []
     internal var longitude : [String] = []
@@ -77,9 +77,12 @@ class TodayEventViewController: UIViewController {
     //定義單次抓取站點Array的index，起始點跟結束點．
     internal var indexIncrementStart : Int = 0
     internal var indexIncrementEnd : Int = 1
+    internal var stopNumberCountInProcess : Int = 0
     
     func onAdd(){
-
+        
+        if stopNumberCountInProcess < TodayEventViewController.defaultTodayEventViewController.latitude.count {
+        
         for index in indexIncrementStart..<indexIncrementEnd{
             
             print("BREAK_POINT : 此次新增站點為LocationArray第\(indexIncrementStart+1)點")
@@ -98,7 +101,19 @@ class TodayEventViewController: UIViewController {
             }
         indexIncrementStart += 1
         indexIncrementEnd += 1
+        stopNumberCountInProcess += 1
+        } else {
+          
+            print("恭喜，你已經抵達終點！！！ In Today Event View Controller")
+            
+        }
+        
+        
+        
     }
+
+    
+    
 }
 
 
@@ -245,4 +260,3 @@ class TodayEventViewController: UIViewController {
 //
 //            }
 //        }
-
