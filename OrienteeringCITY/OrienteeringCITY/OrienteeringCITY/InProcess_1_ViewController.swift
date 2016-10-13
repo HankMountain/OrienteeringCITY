@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
+import HealthKit
+import CoreData
 
 struct PreferencesKeys {
     static let savedItems = "savedItems"
@@ -16,19 +18,29 @@ struct PreferencesKeys {
 
 class InProcess_1_ViewController: UIViewController {
 
-    
     @IBOutlet weak var mapView1: MKMapView!
+    
+    //暫時利用此label來測試總移動距離
     @IBOutlet weak var traveledDistanceNumber: UILabel!
     
     
     var geotifications : [Geotification] = []
     var locationManager = CLLocationManager()
     
+    
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
     var traveledDistance: Double = 0
-
     
+    
+    var distance : Double = 0.0
+    var seconds : Double = 0.0
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var paceLabel: UILabel!
+    var locations = [CLLocation]()
+    var timer = NSTimer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,9 +66,6 @@ class InProcess_1_ViewController: UIViewController {
         
         
         //目前先利用delegate的方式呼叫onAdd，把偵測點參數傳過來，之後必須要修正．
-        //目前回到前一頁，再回到
-        
-        
         let instance = TodayEventViewController.defaultTodayEventViewController
         instance.delegate = self
         instance.onAdd()
@@ -65,10 +74,9 @@ class InProcess_1_ViewController: UIViewController {
         
         //測試用，目前似乎只有先加mapView1.showsUserLocation = true 才能Zoom IN
         mapView1.showsUserLocation = true
-        locationManager.startUpdatingLocation() //這行沒加也沒差?
         
-        
-
+        locationManager.activityType = .Fitness
+        startPressed()
     }
     
 
@@ -81,21 +89,14 @@ class InProcess_1_ViewController: UIViewController {
         geotifications = []
         
         guard let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(PreferencesKeys.savedItems) else {
-            
             print("BREAK_POINT : guard let savedItems")
-
             return }
         
         for savedItem in savedItems {
-            
             print("BREAK_POINT : loadAllGeotifications_forinloop")
-
             guard let geotification = NSKeyedUnarchiver.unarchiveObjectWithData(savedItem as! NSData) as? Geotification else {
-                
                 print("BREAK_POINT : guard let geotification")
-                
                 continue }
-
             add(geotification)
         }
     }
@@ -169,17 +170,7 @@ class InProcess_1_ViewController: UIViewController {
         
     }
 
-   
 
-    // MARK: Map overlay functions //舊的code
-//    func addRadiusOverlay(forGeotification geotification: Geotification) {
-//        
-//        print("BREAK_POINT : addRadiusOverlay")
-//
-////        self.mapView1.delegate = self
-//        mapView1.addOverlay(MKCircle(centerCoordinate: geotification.coordinate as CLLocationCoordinate2D, radius: geotification.radius as CLLocationDistance))
-//        
-//    }
     
     func removeRadiusOverlay(forGeotification geotification: Geotification) {
         
@@ -207,7 +198,6 @@ class InProcess_1_ViewController: UIViewController {
     @IBAction private func zoomToCurrentLocation(sender: AnyObject) {
         
         mapView1.zoomToUserLocation()
-        
         print("BREAK_POINT : zoomToCurrentLocation in InProcess_1_ViewController")
     }
     
@@ -266,16 +256,44 @@ class InProcess_1_ViewController: UIViewController {
 
 
     
+    //使用Healthkit定義顯示活動時間/距離/步速
+    func eachSecond(timer: NSTimer) {
+        seconds += 1
+        
+        let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
+        timeLabel.text = "Time: " + secondsQuantity.description
+        
+        let distanceUnit=HKUnit(fromString: "km")
+        let distanceQuantity = HKQuantity(unit: distanceUnit, doubleValue: Double(String(format: "%.2f",distance/1000))!)
+        distanceLabel.text = "Distance: " + distanceQuantity.description
+        
+        let paceUnit = HKUnit(fromString: "min/km")
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: Double(String(format: "%.2f",(seconds/60) / (distance/1000)))!)
+        paceLabel.text = "Pace: " + paceQuantity.description
+    }
+
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //
+    func startLocationUpdates() {
+        // Here, the location manager will be lazily instantiated
+        locationManager.startUpdatingLocation()
+    }
+    
+    
+    //
+    func startPressed(){
+        seconds = 0.0
+        distance = 0.0
+        locations.removeAll(keepCapacity: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1,target: self,selector: "eachSecond:",userInfo: nil,repeats: true)
+        startLocationUpdates()
     }
     
     
     override func viewDidDisappear(animated: Bool) {
         //因為ＧＰＳ功能很耗電,所以背景執行時關閉定位功能
         locationManager.stopUpdatingLocation()
+        timer.invalidate()
     }
 
 }
@@ -296,7 +314,6 @@ extension InProcess_1_ViewController: AddGeotificationsViewControllerDelegate {
         startMonitoring(geotification)
         saveAllGeotifications()
     }
-    
 }
 
 
@@ -339,50 +356,22 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
     }
     
     
-    
+    //方法二
     //加入計算行走距離的function
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-//        print("1")
-//        print("\(startLocation)")
-//        print("\(lastLocation)")
-        
-        if startLocation == nil {
-            startLocation = locations.first
-            
-//            print("4")
-//            print("\(startLocation)")
-//            print("\(lastLocation)")
-            
-        } else {
-            if let lastLocationNew = locations.last {
+        for location in locations as [CLLocation] {
+            if location.horizontalAccuracy < 20 {
+                //update distance
+                if self.locations.count > 0 {
+                    distance += location.distanceFromLocation(self.locations.last!)
+                }
                 
-//                print("2")
-//                print("\(startLocation)")
-//                print("\(lastLocation)")
-                
-                let distance = startLocation.distanceFromLocation(lastLocation)
-                let lastDistance = lastLocation.distanceFromLocation(lastLocationNew)
-                traveledDistance += lastDistance
-                traveledDistanceNumber.text = String(format: "%.2f",traveledDistance/1000) ?? "0.00"
-                
-//                print( "\(startLocation)") //目前看起來startLocation可以抓到固定值沒問題
-//                print( "\(lastLocation)") //目前看起來lastLocation可以抓到變化值沒問題
-//                print("FULL DISTANCE: \(traveledDistance/1000) Km")
-//                print("STRAIGHT DISTANCE: \(distance/1000) Km")
-//                print(lastDistance)
+                //save location
+                self.locations.append(location)
             }
         }
-        
-//        print("3")
-        
-        lastLocation = locations.last
-        
-//        print("\(startLocation)")
-//        print("\(lastLocation)")
     }
-    
-    
+   
 }
 
 
@@ -415,27 +404,8 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
     }
     
     
-    // MARK: Map overlay Renderer //舊的code
-    
-//    func mapView(mapView: MKMapView!, rendererFor overlay: MKOverlay!) -> MKOverlayRenderer! {
-//        
-//        if overlay is MKCircle {
-////            if let overlay = overlay as? MKCircle {
-//        
-//            let circleRenderer = MKCircleRenderer(overlay: overlay)
-//            circleRenderer.lineWidth = 1
-//            circleRenderer.strokeColor = UIColor.yellowColor()
-//            circleRenderer.fillColor = UIColor.yellowColor().colorWithAlphaComponent(0.5)
-//            
-//            return circleRenderer
-//            }
-//        return MKOverlayRenderer(overlay: overlay)
-//    }
-
-    
-    
+ 
     // MARK: Map overlay Renderer //新的code
-    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
 //        if overlay is MKCircle {
             if let overlay = overlay as? MKCircle{
