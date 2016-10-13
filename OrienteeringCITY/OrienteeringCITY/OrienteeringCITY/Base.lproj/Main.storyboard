@@ -136,16 +136,54 @@
                                     <action selector="zoomToCurrentLocation:" destination="TqZ-3Z-0hs" eventType="touchUpInside" id="dO2-mX-Rx3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3TD-gX-kmN">
+                                <rect key="frame" x="8" y="520" width="324" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="324" id="Du0-SP-1gZ"/>
+                                    <constraint firstAttribute="height" constant="21" id="ufU-2d-a7E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYf-I4-ANY">
+                                <rect key="frame" x="8" y="549" width="324" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="3Fy-QI-ETR"/>
+                                    <constraint firstAttribute="width" constant="324" id="4Ee-xt-qpM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdI-xu-Acq">
+                                <rect key="frame" x="8" y="571" width="324" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="324" id="W1v-Av-3To"/>
+                                    <constraint firstAttribute="height" constant="21" id="YkJ-81-W0f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FN8-11-fb0" firstAttribute="top" secondItem="vdI-xu-Acq" secondAttribute="bottom" constant="8" id="1W3-Rn-6Kb"/>
                             <constraint firstItem="FN8-11-fb0" firstAttribute="top" secondItem="vVn-Wt-Wr4" secondAttribute="bottom" id="5e7-uP-kxr"/>
                             <constraint firstItem="eAS-Q0-gCk" firstAttribute="top" secondItem="vVn-Wt-Wr4" secondAttribute="bottom" constant="8" id="5kZ-Xt-3N0"/>
+                            <constraint firstItem="3TD-gX-kmN" firstAttribute="leading" secondItem="O1r-24-R7E" secondAttribute="leadingMargin" constant="-12" id="91k-ao-g6y"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="trailing" secondItem="O1r-24-R7E" secondAttribute="trailingMargin" id="EE6-pm-ciJ"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="top" secondItem="HcM-Kc-3XJ" secondAttribute="bottom" constant="8" id="EmQ-tX-6RH"/>
+                            <constraint firstItem="vdI-xu-Acq" firstAttribute="leading" secondItem="O1r-24-R7E" secondAttribute="leadingMargin" constant="-12" id="Fh2-tZ-5gb"/>
                             <constraint firstItem="slU-CS-DfJ" firstAttribute="top" secondItem="vVn-Wt-Wr4" secondAttribute="bottom" constant="8" id="Fyx-nV-aqF"/>
+                            <constraint firstItem="vdI-xu-Acq" firstAttribute="top" secondItem="uYf-I4-ANY" secondAttribute="bottom" constant="1" id="FzZ-48-P0K"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="leading" secondItem="O1r-24-R7E" secondAttribute="leadingMargin" constant="-12" id="Imh-Mx-zmc"/>
+                            <constraint firstItem="uYf-I4-ANY" firstAttribute="top" secondItem="3TD-gX-kmN" secondAttribute="bottom" constant="8" id="KWQ-MX-5KD"/>
+                            <constraint firstItem="3TD-gX-kmN" firstAttribute="top" secondItem="BLm-89-2Qf" secondAttribute="bottom" constant="8" id="KXg-ag-Jk1"/>
                             <constraint firstItem="BLm-89-2Qf" firstAttribute="leading" secondItem="eAS-Q0-gCk" secondAttribute="trailing" constant="8" id="L7z-Id-rr8"/>
+                            <constraint firstItem="vdI-xu-Acq" firstAttribute="top" secondItem="uYf-I4-ANY" secondAttribute="bottom" constant="1" id="MHI-xW-1QL"/>
+                            <constraint firstItem="uYf-I4-ANY" firstAttribute="leading" secondItem="O1r-24-R7E" secondAttribute="leadingMargin" constant="-12" id="Ngb-60-eQn"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="trailing" secondItem="O1r-24-R7E" secondAttribute="trailingMargin" id="O1Q-IQ-zfd"/>
                             <constraint firstItem="FN8-11-fb0" firstAttribute="top" secondItem="slU-CS-DfJ" secondAttribute="bottom" constant="88" id="ONe-jH-R6P"/>
                             <constraint firstItem="vVn-Wt-Wr4" firstAttribute="leading" secondItem="O1r-24-R7E" secondAttribute="leadingMargin" constant="-20" id="OVc-sz-Qm4"/>
@@ -157,6 +195,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vVn-Wt-Wr4" secondAttribute="trailing" constant="-20" id="Uo7-Kt-L1U"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="top" secondItem="vVn-Wt-Wr4" secondAttribute="bottom" constant="8" id="YlV-Oq-jm0"/>
                             <constraint firstItem="BLm-89-2Qf" firstAttribute="top" secondItem="vVn-Wt-Wr4" secondAttribute="bottom" constant="8" id="d9e-1N-AM5"/>
+                            <constraint firstItem="uYf-I4-ANY" firstAttribute="top" secondItem="3TD-gX-kmN" secondAttribute="bottom" constant="8" id="fHg-IO-yYL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vVn-Wt-Wr4" secondAttribute="trailing" constant="-20" id="iaj-dZ-wXa"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="top" secondItem="HcM-Kc-3XJ" secondAttribute="bottom" constant="8" id="if5-GA-CFp"/>
                             <constraint firstItem="ysF-vl-ZRh" firstAttribute="trailing" secondItem="O1r-24-R7E" secondAttribute="trailingMargin" id="kYn-LF-LVl"/>
@@ -179,7 +218,10 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="distanceLabel" destination="3TD-gX-kmN" id="BWr-ms-0ZM"/>
                         <outlet property="mapView1" destination="vVn-Wt-Wr4" id="lis-Bs-ftw"/>
+                        <outlet property="paceLabel" destination="vdI-xu-Acq" id="92Q-JF-qDs"/>
+                        <outlet property="timeLabel" destination="uYf-I4-ANY" id="5PX-eO-cPp"/>
                         <outlet property="traveledDistanceNumber" destination="eAS-Q0-gCk" id="4Ya-HU-OW3"/>
                     </connections>
                 </viewController>

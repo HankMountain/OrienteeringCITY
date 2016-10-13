@@ -22,6 +22,7 @@
 		36A202861D9E61DB001DD812 /* InProcess_1_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202851D9E61DB001DD812 /* InProcess_1_ViewController.swift */; };
 		36A2028A1DA23622001DD812 /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 36A202891DA23622001DD812 /* TestLocations.gpx */; };
 		36A202AC1DA4CBF0001DD812 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36A202AB1DA4CBF0001DD812 /* GoogleService-Info.plist */; };
+		36ECD5F11DAF383C003A06F7 /* BackUpFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */; };
 		776DEA0D3B57691FAF2075A1 /* Pods_OrienteeringCITY.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D880065C8054C47A27F33CFB /* Pods_OrienteeringCITY.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		36A202851D9E61DB001DD812 /* InProcess_1_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProcess_1_ViewController.swift; sourceTree = "<group>"; };
 		36A202891DA23622001DD812 /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
 		36A202AB1DA4CBF0001DD812 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackUpFunction.swift; sourceTree = "<group>"; };
 		4128EB0BA0A9CDF0895D1DD3 /* Pods-OrienteeringCITY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrienteeringCITY.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrienteeringCITY/Pods-OrienteeringCITY.debug.xcconfig"; sourceTree = "<group>"; };
 		D880065C8054C47A27F33CFB /* Pods_OrienteeringCITY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrienteeringCITY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC76E8C9790D015BF15E270 /* Pods-OrienteeringCITY.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrienteeringCITY.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrienteeringCITY/Pods-OrienteeringCITY.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				36A2026C1D9BA874001DD812 /* LaunchScreen.storyboard */,
 				36A202881D9E6477001DD812 /* Plist */,
 				36A202871D9E6456001DD812 /* Support Function */,
+				36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */,
 			);
 			path = OrienteeringCITY;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				36A202641D9BA874001DD812 /* AppDelegate.swift in Sources */,
 				36A202801D9E3838001DD812 /* Geotification.swift in Sources */,
 				36A202821D9E456E001DD812 /* TodayEventViewController.swift in Sources */,
+				36ECD5F11DAF383C003A06F7 /* BackUpFunction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
