@@ -16,36 +16,44 @@ struct PreferencesKeys {
     static let savedItems = "savedItems"
 }
 
+let SavedDetailSegueName = "RunDetails"
+
+
 class InProcess_1_ViewController: UIViewController {
+    
+    
+    
+    //呼叫位於AppDelegate裡面的managedObjectContext的實體
+    var managedObjectContext: NSManagedObjectContext? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.managedObjectContext
+    }
+    
+    var run: RunCoreDataModel!
 
     @IBOutlet weak var mapView1: MKMapView!
-    
-    //暫時利用此label來測試總移動距離
-    @IBOutlet weak var traveledDistanceNumber: UILabel!
-    
-    
+
     var geotifications : [Geotification] = []
     var locationManager = CLLocationManager()
-    
-    
-    var startLocation: CLLocation!
-    var lastLocation: CLLocation!
-    var traveledDistance: Double = 0
-    
     
     var distance : Double = 0.0
     var seconds : Double = 0.0
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
+    @IBOutlet weak var zoomInButton: UIButton!
+    
+    
     var locations = [CLLocation]()
     var timer = NSTimer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.hidesBackButton = true
         
         mapView1.delegate = self
+        
         mapView1.mapType = MKMapType(rawValue: 0)!
         
         //追蹤使用者移動，將畫面中心定為使用者中位置．
@@ -69,14 +77,22 @@ class InProcess_1_ViewController: UIViewController {
         let instance = TodayEventViewController.defaultTodayEventViewController
         instance.delegate = self
         instance.onAdd()
-        
-        
-        
+     
         //測試用，目前似乎只有先加mapView1.showsUserLocation = true 才能Zoom IN
         mapView1.showsUserLocation = true
-        
         locationManager.activityType = .Fitness
         startPressed()
+        
+        changeLabelAndButtonStyle()
+        
+    }
+    
+    
+    func changeLabelAndButtonStyle() {
+        
+        zoomInButton.layer.masksToBounds = true
+        zoomInButton.layer.cornerRadius = 5
+        
     }
     
 
@@ -127,7 +143,6 @@ class InProcess_1_ViewController: UIViewController {
         
         geotifications.append(geotification)
         mapView1.addAnnotation(geotification)
-//        addRadiusOverlay(forGeotification: geotification)
         addRadiusCircle(forGeotification: geotification)
         updateGeotificationsCount()
     }
@@ -164,7 +179,7 @@ class InProcess_1_ViewController: UIViewController {
         
         print("BREAK_POINT : addRadiusCircle")
         
-        mapView1.delegate = self
+//        mapView1.delegate = self
         let circle = MKCircle(centerCoordinate: geotification.coordinate, radius: geotification.radius as CLLocationDistance)
         mapView1.addOverlay(circle)
         
@@ -254,22 +269,22 @@ class InProcess_1_ViewController: UIViewController {
         }
     }
 
-
+    
     
     //使用Healthkit定義顯示活動時間/距離/步速
     func eachSecond(timer: NSTimer) {
         seconds += 1
         
         let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
-        timeLabel.text = "Time: " + secondsQuantity.description
+        timeLabel.text = "Running Time: " + secondsQuantity.description
         
         let distanceUnit=HKUnit(fromString: "km")
         let distanceQuantity = HKQuantity(unit: distanceUnit, doubleValue: Double(String(format: "%.2f",distance/1000))!)
-        distanceLabel.text = "Distance: " + distanceQuantity.description
+        distanceLabel.text = "Total Distance: " + distanceQuantity.description
         
         let paceUnit = HKUnit(fromString: "min/km")
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: Double(String(format: "%.2f",(seconds/60) / (distance/1000)))!)
-        paceLabel.text = "Pace: " + paceQuantity.description
+        paceLabel.text = "Average Pace: " + paceQuantity.description
     }
 
     
@@ -295,6 +310,62 @@ class InProcess_1_ViewController: UIViewController {
         locationManager.stopUpdatingLocation()
         timer.invalidate()
     }
+    
+    
+    
+    func saveRun() {
+        // 1
+        let savedRun = NSEntityDescription.insertNewObjectForEntityForName("RunCoreDataModel",inManagedObjectContext: managedObjectContext!) as! RunCoreDataModel
+        savedRun.distance = distance
+        savedRun.duration = seconds
+        savedRun.timestamp = NSDate()
+        
+        // 2
+        var savedLocations = [LocationCoreDataModel]()
+
+        for location in locations {
+ 
+            let savedLocation = NSEntityDescription.insertNewObjectForEntityForName("LocationCoreDataModel",inManagedObjectContext: managedObjectContext!) as! LocationCoreDataModel
+            savedLocation.timestamp = location.timestamp
+            savedLocation.latitude = location.coordinate.latitude
+            savedLocation.longitude = location.coordinate.longitude
+            savedLocations.append(savedLocation)
+            
+        }
+        
+        // Todo :
+        //savedRun.locations是否需要改為NSOrderedSet ?
+        savedRun.locations = NSOrderedSet(array: savedLocations)
+        run = savedRun
+        
+        // 3
+        var error: NSError?
+        let success: Bool
+        do {
+            try managedObjectContext!.save()
+            success = true
+        } catch let error1 as NSError {
+            error = error1
+            success = false
+        }
+        if !success {
+            print("Could not save the run!")
+        }
+    }
+    
+    
+    @IBAction func savePressed(sender: AnyObject) {
+        let actionSheet = UIActionSheet(title: "Run Stopped", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Save", "Discard")
+        actionSheet.actionSheetStyle = .Default
+        actionSheet.showInView(view)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailViewController = segue.destinationViewController as? RunDetailViewController {
+            detailViewController.run = run
+        }
+    }
+    
 
 }
 
@@ -355,15 +426,26 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
 
     }
     
+
     
     //方法二
     //加入計算行走距離的function
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations as [CLLocation] {
-            if location.horizontalAccuracy < 20 {
+            let howRecent = location.timestamp.timeIntervalSinceNow
+            if abs(howRecent) < 2 && location.horizontalAccuracy < 20 {
                 //update distance
                 if self.locations.count > 0 {
                     distance += location.distanceFromLocation(self.locations.last!)
+                    
+                    var coords = [CLLocationCoordinate2D]()
+                    coords.append(self.locations.last!.coordinate)
+                    coords.append(location.coordinate)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1600, 1600)
+                    mapView1.setRegion(region, animated: true)
+                    
+                    mapView1.addOverlay(MKPolyline(coordinates: &coords, count: coords.count))
                 }
                 
                 //save location
@@ -371,6 +453,8 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
             }
         }
     }
+
+    
    
 }
 
@@ -407,9 +491,10 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
  
     // MARK: Map overlay Renderer //新的code
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-//        if overlay is MKCircle {
-            if let overlay = overlay as? MKCircle{
-                
+        
+        if overlay is MKCircle {
+//            if let overlay = overlay as? MKCircle{
+            
             let circle = MKCircleRenderer(overlay: overlay)
             circle.strokeColor = UIColor.purpleColor()
             circle.fillColor = UIColor.yellowColor().colorWithAlphaComponent(0.2)
@@ -417,8 +502,7 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
             return circle
         }
         
-        
-        if (overlay is MKPolyline) {
+        if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
             polylineRenderer.strokeColor = UIColor.brownColor().colorWithAlphaComponent(0.3)
             polylineRenderer.lineWidth = 3
@@ -434,22 +518,34 @@ extension InProcess_1_ViewController: MKMapViewDelegate {
         
 
     }
-    
-    
-    
 
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         // Delete geotification
         
         let geotification = view.annotation as! Geotification
-        
         stopMonitoring(geotification)
-        
         remove(geotification)
-        
         saveAllGeotifications()
         
     }
     
+
 }
+
+
+// MARK: - UIActionSheetDelegate
+extension InProcess_1_ViewController: UIActionSheetDelegate {
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        //save
+        if buttonIndex == 1 {
+            saveRun()
+            performSegueWithIdentifier(SavedDetailSegueName, sender: nil)
+        }
+            //discard
+        else if buttonIndex == 2 {
+            navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
+}
+

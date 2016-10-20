@@ -171,6 +171,13 @@
 
 
 
+
+
+
+//var startLocation: CLLocation!
+//var lastLocation: CLLocation!
+//var traveledDistance: Double = 0
+
 //方法一
 //加入計算行走距離的function
 //    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -234,5 +241,44 @@
 //        return MKOverlayRenderer(overlay: overlay)
 //    }
 
+
+
+
+//方法二
+//加入計算行走距離的function
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        for location in locations as [CLLocation] {
+//            if location.horizontalAccuracy < 20 {
+//                //update distance
+//                if self.locations.count > 0 {
+//                    distance += location.distanceFromLocation(self.locations.last!)
+//                }
+//
+//                //save location
+//                self.locations.append(location)
+//            }
+//        }
+//    }
+
+
+
+
+
+//點擊登出，退出Firebase and 將Facebook Token設為nil->即登出FB
+//    @IBAction func didTapLogout(sender: UIButton) {
+//
+//        print("BREAK_POINT : didTapLogout Facebook and Firebase")
+//
+//        //sign the user out of the firebase app
+//        try! FIRAuth.auth()!.signOut()
+//        //sigh the user out of the facebook app
+//        FBSDKAccessToken.setCurrentAccessToken(nil)
+//
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        let logInViewController : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LogInViewController")
+//
+//        self.presentViewController(logInViewController, animated: true, completion: nil )
+//    }
 
 

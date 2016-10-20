@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="LocationCoreDataModel" representedClassName="OrienteeringCITY.LocationCoreDataModel" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="run" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RunCoreDataModel" inverseName="locations" inverseEntity="RunCoreDataModel" syncable="YES"/>
+    </entity>
+    <entity name="RunCoreDataModel" representedClassName="OrienteeringCITY.RunCoreDataModel" syncable="YES">
+        <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="LocationCoreDataModel" inverseName="run" inverseEntity="LocationCoreDataModel" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="LocationCoreDataModel" positionX="196" positionY="30" width="128" height="103"/>
+        <element name="RunCoreDataModel" positionX="-18" positionY="27" width="128" height="103"/>
+    </elements>
+</model>

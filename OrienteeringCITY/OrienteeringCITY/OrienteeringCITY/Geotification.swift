@@ -12,12 +12,12 @@ import CoreLocation
 
 
 struct GeoKey {
-    static let latitude = "latitude"//必要
-    static let longitude = "longitude"//必要
-    static let radius = "radius"//必要
-    static let identifier = "identifier"//必要
+    static let latitude = "latitude"
+    static let longitude = "longitude"
+    static let radius = "radius"
+    static let identifier = "identifier"
     static let note = "note"
-    static let eventType = "eventType"//必要
+    static let eventType = "eventType"
 }
 
 
@@ -25,9 +25,6 @@ enum EventType: String {
     case onEntry = "On Entry"
 //    case onExit = "On Exit"
 }
-
-
-
 
 
 class Geotification: NSObject, MKAnnotation,NSCoding {

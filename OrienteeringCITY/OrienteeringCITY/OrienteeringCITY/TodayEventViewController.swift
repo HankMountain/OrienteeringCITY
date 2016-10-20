@@ -26,10 +26,27 @@ class TodayEventViewController: UIViewController {
 //    @IBOutlet weak var lat: UILabel!
 //    @IBOutlet weak var lng: UILabel!
     
+    @IBOutlet weak var event_titleLabel: UILabel!
+    @IBOutlet weak var event_image: UIImageView!
+    @IBOutlet weak var event_textLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var difficultyLabel: UILabel!
+    @IBOutlet weak var countDownLabel: UILabel!
+    
+    //由Firebase塞入資料，準備傳給下一個Runnug頁面
     internal var latitude : [String] = []
     internal var longitude : [String] = []
     internal var radius : [String] = []
     internal var note : [String] = []
+    
+    //由Firebase塞入資料，作為本頁面資料顯示
+    internal var event_imageURL : String = ""
+    internal var event_lat : String = ""
+    internal var event_lng : String = ""
+    internal var event_text : String = ""
+    internal var event_title : String = ""
+    internal var event_difficulty : String = ""
+    
     
     let firebaseRef = FIRDatabase.database().reference()
     
@@ -47,10 +64,76 @@ class TodayEventViewController: UIViewController {
         }
     }
     
+    var backBtn = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navigationController?.navigationBar.tintColor = UIColor(red: 245/255, green: 206/255, blue: 45/255, alpha: 1.0)
+        propertyForLabelAndMap()
     }
+    
+    
+    //定意Map以及Label的參數
+    func propertyForLabelAndMap(){
+        
+        event_image.layer.masksToBounds = true
+        event_image.layer.cornerRadius = 10
+        event_textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        event_textLabel.numberOfLines = 0
+        startButton.layer.masksToBounds = true
+        startButton.layer.cornerRadius = 5
+        difficultyLabel.layer.masksToBounds = true
+        difficultyLabel.layer.cornerRadius = 5
+        countDownLabel.layer.masksToBounds = true
+        countDownLabel.layer.cornerRadius = 5
+        
+    }
+    
+    //Loading此頁面顯示資料
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        firebaseRef.child("events").observeEventType(.Value) { (snapshot:FIRDataSnapshot) in
+            
+            if let events = snapshot.value as? [NSDictionary] {
+                for event : NSDictionary in events {
+                    if let eventDetail = event as? [String:AnyObject]{
+                        if (eventDetail["event_type"] as! String ) == "today_event" {
+                            
+                            guard let eventDetailDictionary = eventDetail as? [String:String] else {fatalError()}
+
+                            TodayEventViewController.defaultTodayEventViewController.event_title = eventDetailDictionary["event_title"]!
+                            TodayEventViewController.defaultTodayEventViewController.event_text = eventDetailDictionary["event_text"]!
+                            TodayEventViewController.defaultTodayEventViewController.event_imageURL = eventDetailDictionary["event_imageURL"]!
+                            TodayEventViewController.defaultTodayEventViewController.event_difficulty =
+                                eventDetailDictionary["event_difficulty"]!
+                            TodayEventViewController.defaultTodayEventViewController.event_lat =
+                                eventDetailDictionary["event_lat"]!
+                            TodayEventViewController.defaultTodayEventViewController.event_lng =
+                                eventDetailDictionary["event_lng"]!
+                            
+                            
+
+                            self.event_titleLabel.text = TodayEventViewController.defaultTodayEventViewController.event_title
+                            self.event_textLabel.text = TodayEventViewController.defaultTodayEventViewController.event_text
+                            self.difficultyLabel.text = TodayEventViewController.defaultTodayEventViewController.event_difficulty
+                            
+                            FIRStorage.storage().referenceForURL(TodayEventViewController.defaultTodayEventViewController.event_imageURL).dataWithMaxSize(10 * 1024 * 1024, completion: { (data, error) -> Void in
+                                if error != nil {return}
+                                else{
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.event_image.image = UIImage(data: data!)
+                                }
+                                }})
+                        }
+                    }
+                }
+            }
+        }
+    }
+        
+    
     
     
     override func viewDidAppear(animated: Bool) {
@@ -111,4 +194,5 @@ class TodayEventViewController: UIViewController {
 }
 
 
+ 
 
