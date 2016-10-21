@@ -19,7 +19,7 @@ protocol AddGeotificationsViewControllerDelegate {
 
 
 
-class TodayEventViewController: UIViewController {
+class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     static let defaultTodayEventViewController = TodayEventViewController()
     
@@ -32,6 +32,8 @@ class TodayEventViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var countDownLabel: UILabel!
+    @IBOutlet weak var todayEventMap: MKMapView!
+    
     
     //由Firebase塞入資料，準備傳給下一個Runnug頁面
     internal var latitude : [String] = []
@@ -46,6 +48,7 @@ class TodayEventViewController: UIViewController {
     internal var event_text : String = ""
     internal var event_title : String = ""
     internal var event_difficulty : String = ""
+    
     
     
     let firebaseRef = FIRDatabase.database().reference()
@@ -72,6 +75,18 @@ class TodayEventViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(red: 245/255, green: 206/255, blue: 45/255, alpha: 1.0)
         propertyForLabelAndMap()
     }
+    
+    
+    let regionRadius : CLLocationDistance = 300
+    
+    func zoomInToStartLocation(location: CLLocation){
+
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        todayEventMap.setRegion(coordinateRegion, animated: true)
+        
+    }
+    
+    
     
     
     //定意Map以及Label的參數
@@ -126,6 +141,15 @@ class TodayEventViewController: UIViewController {
                                     self.event_image.image = UIImage(data: data!)
                                 }
                                 }})
+                            
+                            //插大頭針
+                            let annotationForToday = TodayEventAnnotation(title: TodayEventViewController.defaultTodayEventViewController.event_title, subtitle: "\(TodayEventViewController.defaultTodayEventViewController.event_lat),\(TodayEventViewController.defaultTodayEventViewController.event_lng)" , coordinate: CLLocationCoordinate2D(latitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lat)!, longitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lng)!))
+                            self.todayEventMap.addAnnotation(annotationForToday)
+                            
+                            //Zoom In 大頭針
+                            let centerOfStationWithMap = CLLocation.init(latitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lat)!, longitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lng)!)
+                            self.zoomInToStartLocation(centerOfStationWithMap)
+                            
                         }
                     }
                 }
@@ -153,6 +177,9 @@ class TodayEventViewController: UIViewController {
             TodayEventViewController.defaultTodayEventViewController.radius = locationModelInTodayEventViewController.radius
             TodayEventViewController.defaultTodayEventViewController.note = locationModelInTodayEventViewController.note
             }
+        
+        
+        
         }
 
     
@@ -193,6 +220,21 @@ class TodayEventViewController: UIViewController {
     }
 }
 
+//定義AnnotationM Class
+class TodayEventAnnotation : NSObject, MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(title:String, subtitle:String, coordinate:CLLocationCoordinate2D){
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+    }
+}
 
- 
+
+
+
 

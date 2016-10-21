@@ -14,6 +14,9 @@ import CoreData
 import Crashlytics
 
 class MainPageViewController: UIViewController {
+    @IBAction func cancelToPlayersViewController(segue:UIStoryboardSegue) {
+    }
+    
     
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     @IBOutlet weak var todayEventButton: UIButton!

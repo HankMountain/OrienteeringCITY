@@ -26,6 +26,7 @@ class RunDetailViewController: UIViewController {
         mapViewInRunDetail.delegate = self
         mapViewInRunDetail.mapType = MKMapType(rawValue: 0)!
         configureView()
+        changeStyle()
     }
 
     
@@ -125,10 +126,16 @@ class RunDetailViewController: UIViewController {
             mapViewInRunDetail.hidden = true
             
             UIAlertView(title: "Error",
-                        message: "Sorry, this run has no locations saved",
+                        message: "Sorry, this run has no locations saved, you have to start your run",
                         delegate:nil,
                         cancelButtonTitle: "OK").show()
         }
+    }
+    
+    
+    func changeStyle(){
+        mapViewInRunDetail.layer.masksToBounds = true
+        mapViewInRunDetail.layer.cornerRadius = 5
     }
 
 

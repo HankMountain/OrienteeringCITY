@@ -164,6 +164,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //這邊可以做遊戲結束處理的功能
             print("恭喜，你已經抵達終點！！！ In Apple deldgate ")
             
+            UIAlertView(title: "Congratulations",
+                        message: "You have finished the race ! ",
+                        delegate:nil,
+                        cancelButtonTitle: "OK").show()
+            
         }
         
         stopNumberCount += 1

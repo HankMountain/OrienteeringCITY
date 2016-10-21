@@ -21,6 +21,9 @@
 		36A202861D9E61DB001DD812 /* InProcess_1_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202851D9E61DB001DD812 /* InProcess_1_ViewController.swift */; };
 		36A2028A1DA23622001DD812 /* TestLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 36A202891DA23622001DD812 /* TestLocations.gpx */; };
 		36A202AC1DA4CBF0001DD812 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36A202AB1DA4CBF0001DD812 /* GoogleService-Info.plist */; };
+		36AEB6261DB8B11A00E7589D /* BadgeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB6251DB8B11A00E7589D /* BadgeDetailsViewController.swift */; };
+		36AEB6281DB9EA5900E7589D /* PersonalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB6271DB9EA5900E7589D /* PersonalProfileViewController.swift */; };
+		36AEB62B1DB9FBFF00E7589D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 36AEB62A1DB9FBFF00E7589D /* .gitignore */; };
 		36ECD5F11DAF383C003A06F7 /* BackUpFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */; };
 		36ECD6531DAF5DC8003A06F7 /* FirebaseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECD6521DAF5DC8003A06F7 /* FirebaseLocationModel.swift */; };
 		36ECD6551DAF5DEB003A06F7 /* FirebaseRunModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ECD6541DAF5DEB003A06F7 /* FirebaseRunModel.swift */; };
@@ -56,6 +59,9 @@
 		36A202851D9E61DB001DD812 /* InProcess_1_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProcess_1_ViewController.swift; sourceTree = "<group>"; };
 		36A202891DA23622001DD812 /* TestLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
 		36A202AB1DA4CBF0001DD812 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		36AEB6251DB8B11A00E7589D /* BadgeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeDetailsViewController.swift; sourceTree = "<group>"; };
+		36AEB6271DB9EA5900E7589D /* PersonalProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalProfileViewController.swift; sourceTree = "<group>"; };
+		36AEB62A1DB9FBFF00E7589D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackUpFunction.swift; sourceTree = "<group>"; };
 		36ECD6521DAF5DC8003A06F7 /* FirebaseLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLocationModel.swift; sourceTree = "<group>"; };
 		36ECD6541DAF5DEB003A06F7 /* FirebaseRunModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseRunModel.swift; sourceTree = "<group>"; };
@@ -117,11 +123,9 @@
 				36A202811D9E456E001DD812 /* TodayEventViewController.swift */,
 				36A202851D9E61DB001DD812 /* InProcess_1_ViewController.swift */,
 				36ECD66C1DAF8649003A06F7 /* RunDetailViewController.swift */,
-				36ECD6BA1DB4A307003A06F7 /* Badge.swift */,
-				36ECD6BE1DB53BAE003A06F7 /* BadgeCell.swift */,
-				36ECD6C01DB53C0E003A06F7 /* BadgesTableViewController.swift */,
+				36AEB6271DB9EA5900E7589D /* PersonalProfileViewController.swift */,
 				36A202671D9BA874001DD812 /* Main.storyboard */,
-				36ECD6C61DB5EF4E003A06F7 /* LaunchScreen.xib */,
+				36AEB6291DB9EA7700E7589D /* Badge */,
 				36A202881D9E6477001DD812 /* Plist */,
 				36A202871D9E6456001DD812 /* Support Function */,
 				36ECD6561DAF5DF3003A06F7 /* FirebaseModel */,
@@ -140,6 +144,7 @@
 				36632ED31DA636D800BAE83D /* LocationModel.swift */,
 				36ECD66E1DB3AD47003A06F7 /* MulticolorPolylineSegment.swift */,
 				36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */,
+				36ECD6C61DB5EF4E003A06F7 /* LaunchScreen.xib */,
 				36ECD6BC1DB4A5CF003A06F7 /* badges.json */,
 			);
 			name = "Support Function";
@@ -150,8 +155,20 @@
 			children = (
 				36A202AB1DA4CBF0001DD812 /* GoogleService-Info.plist */,
 				36A2026F1D9BA874001DD812 /* Info.plist */,
+				36AEB62A1DB9FBFF00E7589D /* .gitignore */,
 			);
 			name = Plist;
+			sourceTree = "<group>";
+		};
+		36AEB6291DB9EA7700E7589D /* Badge */ = {
+			isa = PBXGroup;
+			children = (
+				36ECD6BA1DB4A307003A06F7 /* Badge.swift */,
+				36ECD6BE1DB53BAE003A06F7 /* BadgeCell.swift */,
+				36ECD6C01DB53C0E003A06F7 /* BadgesTableViewController.swift */,
+				36AEB6251DB8B11A00E7589D /* BadgeDetailsViewController.swift */,
+			);
+			name = Badge;
 			sourceTree = "<group>";
 		};
 		36ECD6561DAF5DF3003A06F7 /* FirebaseModel */ = {
@@ -257,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A2026B1D9BA874001DD812 /* Assets.xcassets in Resources */,
+				36AEB62B1DB9FBFF00E7589D /* .gitignore in Resources */,
 				36A202AC1DA4CBF0001DD812 /* GoogleService-Info.plist in Resources */,
 				36ECD6C41DB5EF4E003A06F7 /* LaunchScreen.xib in Resources */,
 				36A2028A1DA23622001DD812 /* TestLocations.gpx in Resources */,
@@ -339,6 +357,7 @@
 				36ECD66F1DB3AD47003A06F7 /* MulticolorPolylineSegment.swift in Sources */,
 				36ECD6751DB3B38D003A06F7 /* LocationCoreDataModel.swift in Sources */,
 				36A202841D9E535D001DD812 /* Utilities.swift in Sources */,
+				36AEB6281DB9EA5900E7589D /* PersonalProfileViewController.swift in Sources */,
 				36A202661D9BA874001DD812 /* LogInViewController.swift in Sources */,
 				36A2027E1D9C17C7001DD812 /* MainPageViewController.swift in Sources */,
 				36A202861D9E61DB001DD812 /* InProcess_1_ViewController.swift in Sources */,
@@ -347,6 +366,7 @@
 				36A202641D9BA874001DD812 /* AppDelegate.swift in Sources */,
 				36ECD6531DAF5DC8003A06F7 /* FirebaseLocationModel.swift in Sources */,
 				36ECD6551DAF5DEB003A06F7 /* FirebaseRunModel.swift in Sources */,
+				36AEB6261DB8B11A00E7589D /* BadgeDetailsViewController.swift in Sources */,
 				36A202801D9E3838001DD812 /* Geotification.swift in Sources */,
 				36A202821D9E456E001DD812 /* TodayEventViewController.swift in Sources */,
 				36ECD6771DB3B38D003A06F7 /* RunCoreDataModel.swift in Sources */,

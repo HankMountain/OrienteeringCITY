@@ -10,11 +10,19 @@ import UIKit
 import HealthKit
 
 class BadgesTableViewController: UITableViewController {
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.separatorStyle = .None
+    }
+    
 
     var badgeEarnStatusesArray: [BadgeEarnStatus]!
     
-    let redColor = UIColor(red: 1, green: 20/255, blue: 44/255, alpha: 1)
-    let greenColor = UIColor(red: 0, green: 146/255, blue: 78/255, alpha: 1)
+    let redColor = UIColor(red: 157/255, green: 167/255, blue: 174/255, alpha: 1)
+    let greenColor = UIColor(red: 1/255, green: 98/255, blue: 178/255, alpha: 1)
     let dateFormatter: NSDateFormatter = {
         let _dateFormatter = NSDateFormatter()
         _dateFormatter.dateStyle = .MediumStyle
@@ -22,13 +30,13 @@ class BadgesTableViewController: UITableViewController {
     }()
     let transform = CGAffineTransformMakeRotation(CGFloat(M_PI/8.0))
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.destinationViewController.isKindOfClass(BadgeDetailsViewController) {
-//            let badgeDetailsViewController = segue.destinationViewController as! BadgeDetailsViewController
-//            let badgeEarnStatus = badgeEarnStatusesArray[tableView.indexPathForSelectedRow!.row]
-//            badgeDetailsViewController.badgeEarnStatus = badgeEarnStatus
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController.isKindOfClass(BadgeDetailsViewController) {
+            let badgeDetailsViewController = segue.destinationViewController as! BadgeDetailsViewController
+            let badgeEarnStatus = badgeEarnStatusesArray[tableView.indexPathForSelectedRow!.row]
+            badgeDetailsViewController.badgeEarnStatus = badgeEarnStatus
+        }
+    }
     
 }
 
@@ -51,7 +59,7 @@ extension BadgesTableViewController {
             cell.nameLabel.textColor = greenColor
             cell.nameLabel.text = badgeEarnStatus.badge.name!
             cell.descLabel.textColor = greenColor
-            cell.descLabel.text = "Earned: " + dateFormatter.stringFromDate(earnRun.timestamp!)
+            cell.descLabel.text = "Achievement Date : " + dateFormatter.stringFromDate(earnRun.timestamp!)
             cell.badgeImageView.image = UIImage(named: badgeEarnStatus.badge.imageName!)
 //            cell.silverImageView.transform = transform
 //            cell.goldImageView.transform = transform
@@ -59,7 +67,7 @@ extension BadgesTableViewController {
         }
         else {
             cell.nameLabel.textColor = redColor
-            cell.nameLabel.text = "?????"
+            cell.nameLabel.text = "-----"
             cell.descLabel.textColor = redColor
             let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: badgeEarnStatus.badge.distance!)
             cell.descLabel.text = "Run \(distanceQuantity.description) to earn"

@@ -13,16 +13,7 @@ import QuartzCore
 
 class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     
-    
-    @IBOutlet weak var oneLabel: UILabel!
-    @IBOutlet weak var twoLabel: UILabel!
-    @IBOutlet weak var threeLabel: UILabel!
-    @IBOutlet weak var fourLabel: UILabel!
-    @IBOutlet weak var fiveLabel: UILabel!
-    @IBOutlet weak var sixLabel: UILabel!
-    @IBOutlet weak var sevenLabel: UILabel!
-
-    
+        
     @IBOutlet weak var logInPageLoadingSpinner: UIActivityIndicatorView!
     
     @IBOutlet weak var logInPageInformationLabel: UILabel!
@@ -130,35 +121,11 @@ class LogInViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     
+    
     //修改色塊小方塊的顏色/文字/
     func changeColorLabelProperty() {
         
-        oneLabel.text = ""
-        twoLabel.text = ""
-        threeLabel.text = ""
-        fourLabel.text = ""
-        fiveLabel.text = ""
-        sixLabel.text = ""
-        sevenLabel.text = ""
         
-        oneLabel.layer.masksToBounds = true
-        twoLabel.layer.masksToBounds = true
-        threeLabel.layer.masksToBounds = true
-        fourLabel.layer.masksToBounds = true
-        fiveLabel.layer.masksToBounds = true
-        sixLabel.layer.masksToBounds = true
-        sevenLabel.layer.masksToBounds = true
-        
-        oneLabel.layer.cornerRadius = 5
-        twoLabel.layer.cornerRadius = 5
-        threeLabel.layer.cornerRadius = 5
-        fourLabel.layer.cornerRadius = 5
-        fiveLabel.layer.cornerRadius = 5
-        sixLabel.layer.cornerRadius = 5
-        sevenLabel.layer.cornerRadius = 5
-        
-//        oneLabel.layer.borderColor = UIColor(red: 255/255, green: 0, blue: 0, alpha: 1.0).CGColor
-//        oneLabel.layer.borderWidth = 1.5
         
     }
 

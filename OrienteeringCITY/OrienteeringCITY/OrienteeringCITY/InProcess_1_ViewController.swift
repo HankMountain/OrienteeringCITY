@@ -42,7 +42,7 @@ class InProcess_1_ViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var zoomInButton: UIButton!
-    
+    @IBOutlet weak var actionLabel: UIButton!
     
     var locations = [CLLocation]()
     var timer = NSTimer()
@@ -69,9 +69,11 @@ class InProcess_1_ViewController: UIViewController {
         //設定地圖最好精準度
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         // 4
-        //將剛才在addgeotification新增的點加到地圖上．
-        loadAllGeotifications()
         
+        //將剛才在addgeotification新增的點加到地圖上．
+//        loadAllGeotifications()
+        //上面這段code還要再驗證看看是否可以拿掉
+        //目前看起來程式不關掉，重新Run的時候會沒有load點進來
         
         //目前先利用delegate的方式呼叫onAdd，把偵測點參數傳過來，之後必須要修正．
         let instance = TodayEventViewController.defaultTodayEventViewController
@@ -92,6 +94,8 @@ class InProcess_1_ViewController: UIViewController {
         
         zoomInButton.layer.masksToBounds = true
         zoomInButton.layer.cornerRadius = 5
+        actionLabel.layer.masksToBounds = true
+        actionLabel.layer.cornerRadius = 5
         
     }
     
@@ -167,9 +171,9 @@ class InProcess_1_ViewController: UIViewController {
     func updateGeotificationsCount() {
         
         print("BREAK_POINT : updateGeotificationsCount")
-        
-        title = "Geotifications (\(geotifications.count))"
+        title = "Accomplished Points (\(geotifications.count-1))"
         navigationItem.rightBarButtonItem?.enabled = (geotifications.count < 20)
+        
     }
     
     
@@ -333,8 +337,7 @@ class InProcess_1_ViewController: UIViewController {
             
         }
         
-        // Todo :
-        //savedRun.locations是否需要改為NSOrderedSet ?
+        
         savedRun.locations = NSOrderedSet(array: savedLocations)
         run = savedRun
         
@@ -355,8 +358,8 @@ class InProcess_1_ViewController: UIViewController {
     
     
     @IBAction func savePressed(sender: AnyObject) {
-        let actionSheet = UIActionSheet(title: "Run Stopped", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Save", "Discard")
-        actionSheet.actionSheetStyle = .Default
+        let actionSheet = UIActionSheet(title: "Actions", delegate: self, cancelButtonTitle: "No Action", destructiveButtonTitle: nil, otherButtonTitles: "Save Your Game", "Cancel This Game")
+        actionSheet.actionSheetStyle = .BlackOpaque
         actionSheet.showInView(view)
     }
     
@@ -442,7 +445,7 @@ extension InProcess_1_ViewController: CLLocationManagerDelegate {
                     coords.append(self.locations.last!.coordinate)
                     coords.append(location.coordinate)
                     
-                    let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1600, 1600)
+                    let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 2500, 2500)
                     mapView1.setRegion(region, animated: true)
                     
                     mapView1.addOverlay(MKPolyline(coordinates: &coords, count: coords.count))
@@ -541,6 +544,8 @@ extension InProcess_1_ViewController: UIActionSheetDelegate {
         if buttonIndex == 1 {
             saveRun()
             performSegueWithIdentifier(SavedDetailSegueName, sender: nil)
+            
+            
         }
             //discard
         else if buttonIndex == 2 {
