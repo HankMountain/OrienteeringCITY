@@ -1,7 +1,7 @@
-# OrienteeringCITY
+## OrienteeringCITY
 > As our normal experience of running apps are recording routes, average pace, top speed, total time spend. OrienteeringCITY provide you customized route, one route a week, and a specific starter point. Users need to go to the starter point, and run into the Geofence circle, then map will show the next point you need to go. Each route will contain at least 10 points you need to finish.
 
-## Feature
+# Feature
     * Main Page
         * Today Event
         * Next Event
@@ -27,14 +27,14 @@
         * User Customized Event
         * Friends chat room
 
-## Libraries
+# Libraries
     * FBSDK
     * Firebase
     * Tracking Tool
         * Firebase Analytics
         * Crashlytics
 
-## ScreenShot
+# ScreenShot
 ![](http://i.imgur.com/mhwiAg1.png?1)
 ![](http://i.imgur.com/bcQ3EG7.png?1)
 ![](http://i.imgur.com/537S5Z2.png?1)
