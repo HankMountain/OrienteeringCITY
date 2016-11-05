@@ -45,6 +45,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase
   - Firebase/Auth
+  - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
 
@@ -62,6 +63,6 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
 
-PODFILE CHECKSUM: 10aef8953a0f2f9e4a687a6da355d6c122b65747
+PODFILE CHECKSUM: f807a3478264e90b7e68b39cbda989b6b416775a
 
 COCOAPODS: 1.1.0.beta.1

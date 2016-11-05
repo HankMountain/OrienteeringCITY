@@ -11,9 +11,9 @@
 
 
 
-//Hank
+/////Hank
 //此處存放修改程式過程中，已經使用不到的功能．
-//
+/////
 
 
 
@@ -280,5 +280,120 @@
 //
 //        self.presentViewController(logInViewController, animated: true, completion: nil )
 //    }
+
+
+
+
+//原本放在FriendSearchTableViewController的function
+//利用users name對應到uid，再利用uid去抓取photo url
+//再把photo顯示出來
+
+//    func getUsersProfileImage() {
+//
+//        firebaseRef.child("users").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//
+//            if let users = snapshot.value as? [String:AnyObject]{
+//
+//                for usersValue in users {
+//
+//                    self.firebaseRef.child("usersNameWithID").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//
+//                        if let usersNameWithID = snapshot.value as? [String:String]{
+//
+//                            for usersNameWithIDValue in usersNameWithID {
+//
+//                                if usersNameWithIDValue.1 == usersValue.0 {
+//
+//                                    guard let url = (usersValue.1)["user_photoPathInStorage"] as? String else {
+//                                        fatalError()
+//                                    }
+//
+//                                    print(usersNameWithIDValue.0)
+//                                    print(url)
+////                                    print((value.1)["user_photoPathInStorage"]!)
+//
+//
+//
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//
+////                    print(value.0)
+////                    self.firebaseRef.child("users").child(value.0).observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+////
+////                        print(snapshot)
+////                    }
+//
+//
+//                }
+//            }
+//        }
+//    }
+
+
+//原本放在FriendSearchTableViewController的function
+//單純抓取child("usersNameWithID")底下的資料
+
+//        firebaseRef.child("usersNameWithID").observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//
+//            if let usersNameWithID = snapshot.value as? [String:AnyObject] {
+//
+//                for keys in usersNameWithID.keys {
+//
+//                    self.usersName.append(keys)
+//
+//                }
+//
+////                for values in usersNameWithID.values {
+////
+////                    self.usersID.append(values as! String)
+////
+////                }
+//
+//            }
+//            self.tableView.reloadData()
+//        }
+
+
+
+
+//////////////
+//BadgesTableViewController胎死腹中的功能，待實驗
+//////////////
+//    var test : ([String],[String]) = ([""],[""])
+
+//                                        self.test.0.append(usersNameWithIDValue.0)
+//                                        self.test.1.append(url)
+
+
+//return test.0.count
+
+
+
+//FIRStorage.storage().referenceForURL(test.1[indexPath.row]).dataWithMaxSize(10 * 1024 * 1024, completion: { (data, error) -> Void in
+//    if error != nil {return}
+//    else{
+//        dispatch_async(dispatch_get_main_queue()) {
+//            cell.profileImage.image = UIImage(data: data!)
+//            cell.profileImage.layer.masksToBounds = true
+//            cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2
+//            cell.profileImage.clipsToBounds = true
+//        }
+//    }})
+//
+//cell.name.text = test.0[indexPath.row]
+
+
+
+//filteredusersName = test.0.filter({ (test) -> Bool in
+//    return test.lowercaseString.containsString(searchText.lowercaseString)
+//})
+
+
+
+
+
 
 

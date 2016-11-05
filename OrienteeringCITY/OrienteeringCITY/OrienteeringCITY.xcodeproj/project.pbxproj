@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		36632ED41DA636D800BAE83D /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36632ED31DA636D800BAE83D /* LocationModel.swift */; };
+		369B011A1DBF3B6800D3F269 /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B01191DBF3B6800D3F269 /* FriendListTableViewController.swift */; };
+		369B011C1DBF3B8000D3F269 /* FriendSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B011B1DBF3B8000D3F269 /* FriendSearchTableViewController.swift */; };
+		369B011E1DBF44EF00D3F269 /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B011D1DBF44EF00D3F269 /* FriendListTableViewCell.swift */; };
+		369B01201DBF450900D3F269 /* FriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B011F1DBF450900D3F269 /* FriendSearchTableViewCell.swift */; };
 		36A202641D9BA874001DD812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202631D9BA874001DD812 /* AppDelegate.swift */; };
 		36A202661D9BA874001DD812 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A202651D9BA874001DD812 /* LogInViewController.swift */; };
 		36A202691D9BA874001DD812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36A202671D9BA874001DD812 /* Main.storyboard */; };
@@ -44,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		36632ED31DA636D800BAE83D /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		369B01191DBF3B6800D3F269 /* FriendListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
+		369B011B1DBF3B8000D3F269 /* FriendSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewController.swift; sourceTree = "<group>"; };
+		369B011D1DBF44EF00D3F269 /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		369B011F1DBF450900D3F269 /* FriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		36A202601D9BA874001DD812 /* OrienteeringCITY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrienteeringCITY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36A202631D9BA874001DD812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36A202651D9BA874001DD812 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +104,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		369B01181DBF3AEC00D3F269 /* FriendSystem */ = {
+			isa = PBXGroup;
+			children = (
+				369B01191DBF3B6800D3F269 /* FriendListTableViewController.swift */,
+				369B011D1DBF44EF00D3F269 /* FriendListTableViewCell.swift */,
+				369B011B1DBF3B8000D3F269 /* FriendSearchTableViewController.swift */,
+				369B011F1DBF450900D3F269 /* FriendSearchTableViewCell.swift */,
+			);
+			name = FriendSystem;
+			sourceTree = "<group>";
+		};
 		36A202571D9BA874001DD812 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +144,7 @@
 				36ECD66C1DAF8649003A06F7 /* RunDetailViewController.swift */,
 				36AEB6271DB9EA5900E7589D /* PersonalProfileViewController.swift */,
 				36A202671D9BA874001DD812 /* Main.storyboard */,
+				369B01181DBF3AEC00D3F269 /* FriendSystem */,
 				36AEB6291DB9EA7700E7589D /* Badge */,
 				36A202881D9E6477001DD812 /* Plist */,
 				36A202871D9E6456001DD812 /* Support Function */,
@@ -145,7 +165,6 @@
 				36ECD66E1DB3AD47003A06F7 /* MulticolorPolylineSegment.swift */,
 				36ECD5F01DAF383C003A06F7 /* BackUpFunction.swift */,
 				36ECD6C61DB5EF4E003A06F7 /* LaunchScreen.xib */,
-				36ECD6BC1DB4A5CF003A06F7 /* badges.json */,
 			);
 			name = "Support Function";
 			sourceTree = "<group>";
@@ -163,6 +182,7 @@
 		36AEB6291DB9EA7700E7589D /* Badge */ = {
 			isa = PBXGroup;
 			children = (
+				36ECD6BC1DB4A5CF003A06F7 /* badges.json */,
 				36ECD6BA1DB4A307003A06F7 /* Badge.swift */,
 				36ECD6BE1DB53BAE003A06F7 /* BadgeCell.swift */,
 				36ECD6C01DB53C0E003A06F7 /* BadgesTableViewController.swift */,
@@ -247,6 +267,7 @@
 				TargetAttributes = {
 					36A2025F1D9BA874001DD812 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = B5QW56JUZW;
 					};
 				};
 			};
@@ -351,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				369B011C1DBF3B8000D3F269 /* FriendSearchTableViewController.swift in Sources */,
 				36ECD6C11DB53C0E003A06F7 /* BadgesTableViewController.swift in Sources */,
 				36632ED41DA636D800BAE83D /* LocationModel.swift in Sources */,
 				36ECD6741DB3B38D003A06F7 /* LocationCoreDataModel+CoreDataProperties.swift in Sources */,
@@ -360,6 +382,7 @@
 				36AEB6281DB9EA5900E7589D /* PersonalProfileViewController.swift in Sources */,
 				36A202661D9BA874001DD812 /* LogInViewController.swift in Sources */,
 				36A2027E1D9C17C7001DD812 /* MainPageViewController.swift in Sources */,
+				369B011A1DBF3B6800D3F269 /* FriendListTableViewController.swift in Sources */,
 				36A202861D9E61DB001DD812 /* InProcess_1_ViewController.swift in Sources */,
 				36ECD65C1DAF754B003A06F7 /* OrienteeringCITY.xcdatamodeld in Sources */,
 				36ECD6BF1DB53BAE003A06F7 /* BadgeCell.swift in Sources */,
@@ -367,9 +390,11 @@
 				36ECD6531DAF5DC8003A06F7 /* FirebaseLocationModel.swift in Sources */,
 				36ECD6551DAF5DEB003A06F7 /* FirebaseRunModel.swift in Sources */,
 				36AEB6261DB8B11A00E7589D /* BadgeDetailsViewController.swift in Sources */,
+				369B01201DBF450900D3F269 /* FriendSearchTableViewCell.swift in Sources */,
 				36A202801D9E3838001DD812 /* Geotification.swift in Sources */,
 				36A202821D9E456E001DD812 /* TodayEventViewController.swift in Sources */,
 				36ECD6771DB3B38D003A06F7 /* RunCoreDataModel.swift in Sources */,
+				369B011E1DBF44EF00D3F269 /* FriendListTableViewCell.swift in Sources */,
 				36ECD66D1DAF8649003A06F7 /* RunDetailViewController.swift in Sources */,
 				36ECD5F11DAF383C003A06F7 /* BackUpFunction.swift in Sources */,
 				36ECD6761DB3B38D003A06F7 /* RunCoreDataModel+CoreDataProperties.swift in Sources */,
@@ -419,7 +444,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -489,6 +514,9 @@
 			baseConfigurationReference = 4128EB0BA0A9CDF0895D1DD3 /* Pods-OrienteeringCITY.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
@@ -501,10 +529,12 @@
 					/Users/hank/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = OrienteeringCITY/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hank.OrienteeringCITY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -513,6 +543,9 @@
 			baseConfigurationReference = DDC76E8C9790D015BF15E270 /* Pods-OrienteeringCITY.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
@@ -525,10 +558,12 @@
 					/Users/hank/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = OrienteeringCITY/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hank.OrienteeringCITY;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

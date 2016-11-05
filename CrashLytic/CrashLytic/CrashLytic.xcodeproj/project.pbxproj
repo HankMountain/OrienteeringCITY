@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		369B01021DBDE9BC00D3F269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B01011DBDE9BC00D3F269 /* AppDelegate.swift */; };
+		369B01041DBDE9BC00D3F269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369B01031DBDE9BC00D3F269 /* ViewController.swift */; };
+		369B01071DBDE9BC00D3F269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369B01051DBDE9BC00D3F269 /* Main.storyboard */; };
+		369B01091DBDE9BC00D3F269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 369B01081DBDE9BC00D3F269 /* Assets.xcassets */; };
+		369B010C1DBDE9BC00D3F269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 369B010A1DBDE9BC00D3F269 /* LaunchScreen.storyboard */; };
+		916C918DBA8BA0095AB7E7E9 /* Pods_CrashLytic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3F995F9CB7514973CADF27 /* Pods_CrashLytic.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		369B00FE1DBDE9BC00D3F269 /* CrashLytic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrashLytic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		369B01011DBDE9BC00D3F269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		369B01031DBDE9BC00D3F269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		369B01061DBDE9BC00D3F269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		369B01081DBDE9BC00D3F269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		369B010B1DBDE9BC00D3F269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		369B010D1DBDE9BC00D3F269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAD2E78FD1B13AA398F6D5A6 /* Pods-CrashLytic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrashLytic.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrashLytic/Pods-CrashLytic.release.xcconfig"; sourceTree = "<group>"; };
+		E437226244B1DEBEAB5175CB /* Pods-CrashLytic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrashLytic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrashLytic/Pods-CrashLytic.debug.xcconfig"; sourceTree = "<group>"; };
+		FB3F995F9CB7514973CADF27 /* Pods_CrashLytic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrashLytic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		369B00FB1DBDE9BC00D3F269 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916C918DBA8BA0095AB7E7E9 /* Pods_CrashLytic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		369B00F51DBDE9BC00D3F269 = {
+			isa = PBXGroup;
+			children = (
+				369B01001DBDE9BC00D3F269 /* CrashLytic */,
+				369B00FF1DBDE9BC00D3F269 /* Products */,
+				D4D9B8FFD8662EBFCC3ABA00 /* Pods */,
+				42AEBD77BE0430F8A5BA164C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		369B00FF1DBDE9BC00D3F269 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				369B00FE1DBDE9BC00D3F269 /* CrashLytic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		369B01001DBDE9BC00D3F269 /* CrashLytic */ = {
+			isa = PBXGroup;
+			children = (
+				369B01011DBDE9BC00D3F269 /* AppDelegate.swift */,
+				369B01031DBDE9BC00D3F269 /* ViewController.swift */,
+				369B01051DBDE9BC00D3F269 /* Main.storyboard */,
+				369B01081DBDE9BC00D3F269 /* Assets.xcassets */,
+				369B010A1DBDE9BC00D3F269 /* LaunchScreen.storyboard */,
+				369B010D1DBDE9BC00D3F269 /* Info.plist */,
+			);
+			path = CrashLytic;
+			sourceTree = "<group>";
+		};
+		42AEBD77BE0430F8A5BA164C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB3F995F9CB7514973CADF27 /* Pods_CrashLytic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4D9B8FFD8662EBFCC3ABA00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E437226244B1DEBEAB5175CB /* Pods-CrashLytic.debug.xcconfig */,
+				BAD2E78FD1B13AA398F6D5A6 /* Pods-CrashLytic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		369B00FD1DBDE9BC00D3F269 /* CrashLytic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 369B01101DBDE9BC00D3F269 /* Build configuration list for PBXNativeTarget "CrashLytic" */;
+			buildPhases = (
+				F4777FF584F1B7977D088728 /* [CP] Check Pods Manifest.lock */,
+				369B00FA1DBDE9BC00D3F269 /* Sources */,
+				369B00FB1DBDE9BC00D3F269 /* Frameworks */,
+				369B00FC1DBDE9BC00D3F269 /* Resources */,
+				47A5A55F3F87E8007A2FDE61 /* [CP] Embed Pods Frameworks */,
+				0DDB7CB5F40FBCBE24732FC7 /* [CP] Copy Pods Resources */,
+				369B01131DBDEBB800D3F269 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrashLytic;
+			productName = CrashLytic;
+			productReference = 369B00FE1DBDE9BC00D3F269 /* CrashLytic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		369B00F61DBDE9BC00D3F269 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Hank;
+				TargetAttributes = {
+					369B00FD1DBDE9BC00D3F269 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 369B00F91DBDE9BC00D3F269 /* Build configuration list for PBXProject "CrashLytic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 369B00F51DBDE9BC00D3F269;
+			productRefGroup = 369B00FF1DBDE9BC00D3F269 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				369B00FD1DBDE9BC00D3F269 /* CrashLytic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		369B00FC1DBDE9BC00D3F269 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				369B010C1DBDE9BC00D3F269 /* LaunchScreen.storyboard in Resources */,
+				369B01091DBDE9BC00D3F269 /* Assets.xcassets in Resources */,
+				369B01071DBDE9BC00D3F269 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DDB7CB5F40FBCBE24732FC7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrashLytic/Pods-CrashLytic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		369B01131DBDEBB800D3F269 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run 417c1f2d052464e591fc603db554b496469a4768 a0c12db2a93fbdaaa43d687b7bae8aaf6f19f40e651f9696adab4e193ac5876f";
+		};
+		47A5A55F3F87E8007A2FDE61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrashLytic/Pods-CrashLytic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4777FF584F1B7977D088728 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		369B00FA1DBDE9BC00D3F269 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				369B01041DBDE9BC00D3F269 /* ViewController.swift in Sources */,
+				369B01021DBDE9BC00D3F269 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		369B01051DBDE9BC00D3F269 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				369B01061DBDE9BC00D3F269 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		369B010A1DBDE9BC00D3F269 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				369B010B1DBDE9BC00D3F269 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		369B010E1DBDE9BC00D3F269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		369B010F1DBDE9BC00D3F269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		369B01111DBDE9BC00D3F269 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E437226244B1DEBEAB5175CB /* Pods-CrashLytic.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrashLytic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hank.CrashLytic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		369B01121DBDE9BC00D3F269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAD2E78FD1B13AA398F6D5A6 /* Pods-CrashLytic.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrashLytic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Hank.CrashLytic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		369B00F91DBDE9BC00D3F269 /* Build configuration list for PBXProject "CrashLytic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				369B010E1DBDE9BC00D3F269 /* Debug */,
+				369B010F1DBDE9BC00D3F269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		369B01101DBDE9BC00D3F269 /* Build configuration list for PBXNativeTarget "CrashLytic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				369B01111DBDE9BC00D3F269 /* Debug */,
+				369B01121DBDE9BC00D3F269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 369B00F61DBDE9BC00D3F269 /* Project object */;
+}

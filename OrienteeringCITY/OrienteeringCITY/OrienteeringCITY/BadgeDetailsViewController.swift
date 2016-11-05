@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import FirebaseAnalytics
 
 class BadgeDetailsViewController: UIViewController {
     
@@ -27,6 +28,8 @@ class BadgeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FIRAnalytics.logEventWithName("ToBadgeDetails", parameters: nil)
         
         let formatter = NSDateFormatter()
         formatter.dateStyle = .MediumStyle
@@ -75,6 +78,8 @@ class BadgeDetailsViewController: UIViewController {
     }
     
     @IBAction func infoButtonPressed(sender: AnyObject) {
+        
+        FIRAnalytics.logEventWithName("TouchBadgeDetailInfoButton", parameters: nil)
         
         UIAlertView(title: badgeEarnStatus.badge.name!, message: badgeEarnStatus.badge.information!, delegate: nil, cancelButtonTitle: "ok").show()
         

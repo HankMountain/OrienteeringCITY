@@ -11,6 +11,10 @@ import MapKit
 import CoreLocation
 import HealthKit
 import CoreData
+import Firebase
+import FirebaseAuth
+import Social
+
 
 struct PreferencesKeys {
     static let savedItems = "savedItems"
@@ -22,6 +26,13 @@ let SavedDetailSegueName = "RunDetails"
 class InProcess_1_ViewController: UIViewController {
     
     
+    @IBAction func facebookShareButton(sender: AnyObject) {
+        
+        let shareToFacebook: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        
+        self.presentViewController(shareToFacebook, animated: true, completion: nil)
+  
+    }
     
     //呼叫位於AppDelegate裡面的managedObjectContext的實體
     var managedObjectContext: NSManagedObjectContext? {
@@ -49,6 +60,8 @@ class InProcess_1_ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FIRAnalytics.logEventWithName("ToInProcessPage", parameters: nil)
         
         navigationItem.hidesBackButton = true
         
@@ -218,6 +231,8 @@ class InProcess_1_ViewController: UIViewController {
         
         mapView1.zoomToUserLocation()
         print("BREAK_POINT : zoomToCurrentLocation in InProcess_1_ViewController")
+        
+        FIRAnalytics.logEventWithName("InProcessPressZoom", parameters: nil)
     }
     
     
@@ -358,14 +373,25 @@ class InProcess_1_ViewController: UIViewController {
     
     
     @IBAction func savePressed(sender: AnyObject) {
-        let actionSheet = UIActionSheet(title: "Actions", delegate: self, cancelButtonTitle: "No Action", destructiveButtonTitle: nil, otherButtonTitles: "Save Your Game", "Cancel This Game")
+        let actionSheet = UIActionSheet(title: "Actions", delegate: self, cancelButtonTitle: "Resume Game", destructiveButtonTitle: nil, otherButtonTitles: "Save Game", "Cancel Game")
         actionSheet.actionSheetStyle = .BlackOpaque
         actionSheet.showInView(view)
+        
+        FIRAnalytics.logEventWithName("InProcessPressAction", parameters: nil)
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailViewController = segue.destinationViewController as? RunDetailViewController {
             detailViewController.run = run
+            
+            //加入Firebase Analytics
+//            FIRAnalytics.logEventWithName("UserTouchSaveRun", parameters: ["name" : (FIRAuth.auth()?.currentUser?.uid)!])
+            
+//            FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
+//                kFIRParameterContentType:(FIRAuth.auth()?.currentUser?.uid)!,
+//                kFIRParameterItemID:"name"
+//                ])
         }
     }
     
@@ -545,11 +571,15 @@ extension InProcess_1_ViewController: UIActionSheetDelegate {
             saveRun()
             performSegueWithIdentifier(SavedDetailSegueName, sender: nil)
             
+            FIRAnalytics.logEventWithName("InProcessPressSave", parameters: nil)
             
         }
             //discard
         else if buttonIndex == 2 {
             navigationController?.popToRootViewControllerAnimated(true)
+            
+            FIRAnalytics.logEventWithName("InProcessPressResumeGame", parameters: nil)
+            
         }
     }
 }

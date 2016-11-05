@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import HealthKit
 import MapKit
+import FirebaseAnalytics
 
 class RunDetailViewController: UIViewController {
     
@@ -129,6 +130,8 @@ class RunDetailViewController: UIViewController {
                         message: "Sorry, this run has no locations saved, you have to start your run",
                         delegate:nil,
                         cancelButtonTitle: "OK").show()
+            
+            FIRAnalytics.logEventWithName("InRunDetailNoRunData", parameters: nil)
         }
     }
     

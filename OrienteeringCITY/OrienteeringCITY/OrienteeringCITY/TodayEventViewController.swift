@@ -11,6 +11,7 @@ import MapKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import Social
 
 
 protocol AddGeotificationsViewControllerDelegate {
@@ -26,7 +27,7 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
 //    @IBOutlet weak var lat: UILabel!
 //    @IBOutlet weak var lng: UILabel!
     
-    @IBOutlet weak var event_titleLabel: UILabel!
+//    @IBOutlet weak var event_titleLabel: UILabel!
     @IBOutlet weak var event_image: UIImageView!
     @IBOutlet weak var event_textLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -55,6 +56,25 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     var delegate: AddGeotificationsViewControllerDelegate?
     
+    @IBAction func shareScreenShot(sender: AnyObject) {
+        
+        let screen = UIScreen.mainScreen()
+        
+        if let window = UIApplication.sharedApplication().keyWindow {
+            UIGraphicsBeginImageContextWithOptions(screen.bounds.size, false, 0);
+            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+            let image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            let composeSheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            composeSheet.setInitialText("Hello, Facebook!")
+            composeSheet.addImage(image)
+            
+            presentViewController(composeSheet, animated: true, completion: nil)
+        }
+        
+    }
+    
     
     //Seque to InProcess_1_ViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -71,6 +91,15 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FIRAnalytics.logEventWithName("ToTodayEventPage", parameters: nil)
+        
+        FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
+            kFIRParameterContentType:"PageSelection",
+            kFIRParameterItemID:"ToTodayEventPage"
+            ])
+
+        
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 245/255, green: 206/255, blue: 45/255, alpha: 1.0)
         propertyForLabelAndMap()
@@ -92,16 +121,24 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
     //定意Map以及Label的參數
     func propertyForLabelAndMap(){
         
-        event_image.layer.masksToBounds = true
-        event_image.layer.cornerRadius = 10
+//        event_image.layer.masksToBounds = true
+//        event_image.layer.cornerRadius = 10
         event_textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         event_textLabel.numberOfLines = 0
         startButton.layer.masksToBounds = true
         startButton.layer.cornerRadius = 5
-        difficultyLabel.layer.masksToBounds = true
-        difficultyLabel.layer.cornerRadius = 5
-        countDownLabel.layer.masksToBounds = true
-        countDownLabel.layer.cornerRadius = 5
+//        difficultyLabel.layer.masksToBounds = true
+//        difficultyLabel.layer.cornerRadius = 5
+//        countDownLabel.layer.masksToBounds = true
+//        countDownLabel.layer.cornerRadius = 5
+        
+        startButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).CGColor
+        startButton.layer.shadowOffset = CGSizeMake(0, 1.6)
+        startButton.layer.shadowOpacity = 1.0
+        startButton.layer.shadowRadius = 0.0
+        startButton.layer.masksToBounds = false
+        startButton.layer.cornerRadius = 3.0
+        
         
     }
     
@@ -130,9 +167,9 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
                             
                             
 
-                            self.event_titleLabel.text = TodayEventViewController.defaultTodayEventViewController.event_title
+//                            self.event_titleLabel.text = TodayEventViewController.defaultTodayEventViewController.event_title
                             self.event_textLabel.text = TodayEventViewController.defaultTodayEventViewController.event_text
-                            self.difficultyLabel.text = TodayEventViewController.defaultTodayEventViewController.event_difficulty
+//                            self.difficultyLabel.text = TodayEventViewController.defaultTodayEventViewController.event_difficulty
                             
                             FIRStorage.storage().referenceForURL(TodayEventViewController.defaultTodayEventViewController.event_imageURL).dataWithMaxSize(10 * 1024 * 1024, completion: { (data, error) -> Void in
                                 if error != nil {return}
@@ -141,6 +178,8 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
                                     self.event_image.image = UIImage(data: data!)
                                 }
                                 }})
+                            
+                            self.navigationItem.title = TodayEventViewController.defaultTodayEventViewController.event_title
                             
                             //插大頭針
                             let annotationForToday = TodayEventAnnotation(title: TodayEventViewController.defaultTodayEventViewController.event_title, subtitle: "\(TodayEventViewController.defaultTodayEventViewController.event_lat),\(TodayEventViewController.defaultTodayEventViewController.event_lng)" , coordinate: CLLocationCoordinate2D(latitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lat)!, longitude: Double(TodayEventViewController.defaultTodayEventViewController.event_lng)!))
@@ -177,7 +216,6 @@ class TodayEventViewController: UIViewController, CLLocationManagerDelegate, MKM
             TodayEventViewController.defaultTodayEventViewController.radius = locationModelInTodayEventViewController.radius
             TodayEventViewController.defaultTodayEventViewController.note = locationModelInTodayEventViewController.note
             }
-        
         
         
         }

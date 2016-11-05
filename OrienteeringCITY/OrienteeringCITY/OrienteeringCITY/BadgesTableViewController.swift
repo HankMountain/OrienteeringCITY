@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import FirebaseAnalytics
 
 class BadgesTableViewController: UITableViewController {
     
@@ -15,6 +16,13 @@ class BadgesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FIRAnalytics.logEventWithName("ToBadgePage", parameters: nil)
+        
+        FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
+            kFIRParameterContentType:"PageSelection",
+            kFIRParameterItemID:"ToBadgePage"
+            ])
+
         tableView.separatorStyle = .None
     }
     
@@ -22,7 +30,7 @@ class BadgesTableViewController: UITableViewController {
     var badgeEarnStatusesArray: [BadgeEarnStatus]!
     
     let redColor = UIColor(red: 157/255, green: 167/255, blue: 174/255, alpha: 1)
-    let greenColor = UIColor(red: 1/255, green: 98/255, blue: 178/255, alpha: 1)
+    let greenColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     let dateFormatter: NSDateFormatter = {
         let _dateFormatter = NSDateFormatter()
         _dateFormatter.dateStyle = .MediumStyle
@@ -64,6 +72,7 @@ extension BadgesTableViewController {
 //            cell.silverImageView.transform = transform
 //            cell.goldImageView.transform = transform
             cell.userInteractionEnabled = true
+            
         }
         else {
             cell.nameLabel.textColor = redColor

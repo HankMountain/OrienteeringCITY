@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-import FBSDKLoginKit
+//import FBSDKLoginKit
 import CoreLocation
 import CoreData
 import Fabric
@@ -27,12 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Fabric.with([Crashlytics.self])
             FIRApp.configure()
         
+        FIRAnalytics.logEventWithName(kFIREventAppOpen, parameters: nil)
+        
+        
+//        FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
+//            kFIRParameterContentType:"Hank",
+//            kFIRParameterItemID:"1"
+//            ])
+        
 //        FIRConfiguration.sharedInstance().logLevel = .Debug
 //        ref.child("events").observeEventType(.Value) { (snapshot) in
 //            print(snapshot)
 //        }
         
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+//        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -41,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        // Animation Start
+//        // Animation Start
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor(red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
@@ -111,17 +119,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         
-        // Animation Stop
-        
+//        // Animation Stop
         
         return true
     }
     
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
+//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+//        
+//        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+//    }
     
     
     //用stopNumberCount來限制呼叫handleEvent次數不出過Array參數個數
@@ -169,6 +176,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         delegate:nil,
                         cancelButtonTitle: "OK").show()
             
+            FIRAnalytics.logEventWithName("UserFinishGame", parameters: nil)
+            
         }
         
         stopNumberCount += 1
@@ -207,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        FBSDKAppEvents.activateApp()
+//        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -316,10 +325,5 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
 }
-
-
-
-
-
 
 
