@@ -36,6 +36,11 @@
 
 ## ScreenShot
 ![](http://i.imgur.com/mhwiAg1.png?1)
+![](http://i.imgur.com/bcQ3EG7.png?1)
+![](http://i.imgur.com/537S5Z2.png?1)
+![](http://i.imgur.com/CnCGcHy.png?1)
+![](http://i.imgur.com/xz5o4vh.png?1)
+
 
 # Requirement
 * iOS 10.0+
