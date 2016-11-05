@@ -35,7 +35,7 @@
         * Crashlytics
 
 ## ScreenShot
-![](http://i.imgur.com/mhwiAg1.png)
+![](http://i.imgur.com/mhwiAg1.png?1)
 
 # Requirement
 * iOS 10.0+
