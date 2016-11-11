@@ -43,7 +43,7 @@
 
 
 # Requirement
-  * iOS 10.0+
+  * iOS 9.0+
   * Xcode 7.3+
   * pod install
 
