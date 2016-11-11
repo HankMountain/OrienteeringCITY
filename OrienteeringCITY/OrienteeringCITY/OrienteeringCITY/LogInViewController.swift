@@ -111,10 +111,19 @@ class LogInViewController: UIViewController {
     }
     
     
+    func dismissKeyboard(){
+        nameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "logInBackGround.png")!)
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: (#selector(LogInViewController.dismissKeyboard))))
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if  user != nil {
@@ -130,6 +139,8 @@ class LogInViewController: UIViewController {
             
             
         }
+        
+        
     }
     
     
